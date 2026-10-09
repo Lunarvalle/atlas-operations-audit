@@ -1,0 +1,7 @@
+{
+  "a": "link_id,url\r\nAD1,https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn\r\nAD2,https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn\r\nAD3,https://example.com/c?utm_source=partner&token=secret-demo\r\n",
+  "options": {
+    "allowedSources": "newsletter,partner"
+  },
+  "asOf": "2026-10-09T12:00:00Z"
+}
