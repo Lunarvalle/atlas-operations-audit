@@ -1,4 +1,4 @@
-# Locale Shield
+# JSON Translation QA — Keys, Placeholders and Tags
 
 Compare JSON dictionaries for missing/empty strings, simple placeholder and tag differences, and review signals.
 
@@ -30,3 +30,14 @@ Not translation quality review. Complex ICU messages need a specialist parser; n
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **Localization agencies:** Check the structure of the dictionaries you are delivering.
+- **Frontend release teams:** Find missing strings and simple placeholder mismatches.
+- **Product localization leads:** Review file-level exceptions before the release handoff.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
