@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "product": "return-signal",
+  "observedAt": "2026-10-09T12:00:00Z",
+  "status": "complete",
+  "metrics": {
+    "skus": 2,
+    "refund_cash": {
+      "EUR": 90
+    },
+    "handling_cost": {
+      "EUR": 12
+    },
+    "findings": 0
+  },
+  "rows": [
+    {
+      "sku": "SHIRT-M",
+      "currency": "EUR",
+      "sold_units": 5,
+      "returned_units": 2,
+      "return_rate_percent": 40,
+      "refund_cash": 60,
+      "handling_cost": 8,
+      "top_reason": "taglia piccola",
+      "review": "matched_cohort"
+    },
+    {
+      "sku": "SHIRT-L",
+      "currency": "EUR",
+      "sold_units": 10,
+      "returned_units": 1,
+      "return_rate_percent": 10,
+      "refund_cash": 30,
+      "handling_cost": 4,
+      "top_reason": "colore diverso",
+      "review": "matched_cohort"
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Rates refer only to the supplied matched sales cohort, not all sales in a date range.",
+    "Refund cash and handling costs are not lost profit; COGS, tax and resale value are not inferred.",
+    "Reasons are supplied labels; counts show association, not cause."
+  ],
+  "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+}
