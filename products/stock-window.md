@@ -1,4 +1,4 @@
-# Stock Window
+# Reorder CSV Audit — MOQ, Lead Times and Budget
 
 Turn stock, reserved units, inbound units, lead times and buying constraints into a reviewable reorder worksheet.
 
@@ -30,3 +30,14 @@ Historical averages, not demand forecasting. Incoming stock dates must be checke
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **Small retailers:** Review what to reorder before approving the next purchase.
+- **Purchasing teams:** See how MOQ and pack sizes change the proposed order.
+- **Operations consultants:** Deliver an explainable reorder worksheet from the supplied export.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
