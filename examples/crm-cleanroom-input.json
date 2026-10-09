@@ -1,0 +1,4 @@
+{
+  "a": "record_id,email,phone,name,company,do_not_contact\r\nC1,ada@example.com,+39021234567,Ada,Studio A,false\r\nC2,ADA@example.com,+39021234567,Ada,Studio A,true\r\nC3,leo@example.com,+39021234567,Leo,Studio B,false\r\nC4,mia@example.com,02345,Mia,Studio C,\r\n",
+  "asOf": "2026-10-09T12:00:00Z"
+}
