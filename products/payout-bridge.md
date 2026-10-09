@@ -1,4 +1,4 @@
-# Payout Bridge
+# Payout Reconciliation — Transaction and Settlement CSV Audit
 
 Match transaction batches to payout records by exact ID and currency; expose missing batches and arithmetic differences.
 
@@ -30,3 +30,14 @@ No bank access, tax accounting or proof that money reached your bank.
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **Small business finance leads:** See which supplied payout batches do not reconcile.
+- **Bookkeeping teams:** Review exact-ID and currency exceptions before closing the period.
+- **Marketplace operations teams:** Compare normalized exports without sharing bank credentials.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
