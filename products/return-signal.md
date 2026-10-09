@@ -1,4 +1,4 @@
-# Return Signal
+# Returns and Refunds Audit — SKU and Reason Report
 
 Join returned line items to the matching sales cohort; separate refunds, handling cost and product/reason patterns.
 
@@ -30,3 +30,14 @@ Requires actual return records. A refund or order edit is not proof that a produ
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **E-commerce owners:** Separate physical returns from financial refunds.
+- **Returns managers:** Review return reasons against the matching sales cohort.
+- **E-commerce analysts:** Keep denominators and unmatched return lines visible.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
