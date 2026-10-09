@@ -1,0 +1,5 @@
+{
+  "a": "from,to\r\n/old,/step\r\n/step,/new\r\n/loop-a,/loop-b\r\n/loop-b,/loop-a\r\n",
+  "b": "url,visits\r\n/old,800\r\n/forgotten,300\r\n/loop-a,70\r\n",
+  "asOf": "2026-10-09T12:00:00Z"
+}
