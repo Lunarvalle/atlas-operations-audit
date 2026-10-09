@@ -45,3 +45,8 @@ No tool sends orders, changes prices, replays webhooks, merges records, makes pa
 See [the MCP contract](INTEGRATION.md) and [the machine-readable product catalog](catalog-public.json). A local authorized MCP client launches `node mcp-server.cjs`; first call `atlas_catalog`, then the named tool. Hosted endpoint details will be added only after a live test.
 
 Documentation and synthetic fixtures may be copied to evaluate or integrate the service. Product engine rights are reserved. These previews carry no promise of savings, accuracy for unsupported data, or guaranteed commercial outcomes.
+
+<!-- sales-scope-v1 -->
+## Individual products, static previews
+
+Each linked page covers a separate product. This public repository contains documentation and fixed synthetic reports only: no executable app, product engine or all-access download. Paid checkout is not active yet. The private owner workbench is not a customer distribution package.
