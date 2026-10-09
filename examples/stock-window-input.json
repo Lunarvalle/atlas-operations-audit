@@ -1,0 +1,8 @@
+{
+  "a": "sku,on_hand,reserved,on_order,units_sold,window_days,lead_days,safety_days,pack_size,moq,unit_cost,currency\r\nA-100,12,2,0,60,30,10,5,6,12,8.50,EUR\r\nB-200,50,0,12,20,30,7,5,4,8,4.00,EUR\r\nC-300,7,0,0,0,30,14,7,1,0,12.00,EUR\r\n",
+  "options": {
+    "budget": "200",
+    "budgetCurrency": "EUR"
+  },
+  "asOf": "2026-10-09T12:00:00Z"
+}
