@@ -1,4 +1,4 @@
-# Webhook Ledger
+# Webhook Log Audit — Duplicates, Collisions and Event Order
 
 Audit exported event logs for repeated identities, conflicting payloads, ordering anomalies and sensitive field names.
 
@@ -30,3 +30,14 @@ Offline review only. No receiving, sending, replaying or proof of receiver-side 
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **SaaS integration teams:** Review an exported incident log without replaying events.
+- **Automation agencies:** Separate repeated event IDs from conflicting payloads.
+- **Reliability engineers:** Investigate ordering exceptions without exposing payload values in the report.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
