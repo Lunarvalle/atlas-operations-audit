@@ -3,7 +3,7 @@
   "files": {
     "INTEGRATION.md": "6448feae3fd71b8f4cd5c4ed7a3f31f14681806b055f15a8c9195975550ce59a",
     "LICENSE": "ac88a389982c1d6c8c4434c2751699aeca94d0212bb23867e79ffbf2c401c78b",
-    "README.md": "370b46b5fd8bb52b48211f08024c4ea285a461d6f352ddbced279a1bb2fe343e",
+    "README.md": "708612669cd0df305447601362c32c5a53a0f9efc40e533b66210723fc4fbf55",
     "catalog-public.json": "0b7a6effd07548cb04846b66a0450d37d274fe3cd18933369651833bc1e722fa",
     "examples/bom-delta-input.json": "81e306e66086720fa95dc4fa3fd8b6c9233fdbe4c9cf95ac677b30e6d96d0833",
     "examples/bom-delta-report.json": "ae531f0cca6afbe07f1d74e0264c41917a79c8cf01d4149023a884273e79ecbe",
@@ -25,15 +25,15 @@
     "examples/stock-window-report.json": "718b7e4e2e224a423dddb2f75724b55d0094e483b9494567433e3d0bed16862f",
     "examples/webhook-ledger-input.json": "96eed985c4891c7daf3879c5b4770e2280ff4240ec4d5083df2e5d016bbe71ea",
     "examples/webhook-ledger-report.json": "c06a81ac8399ac75e391b9ef64a37e69e5d46606afad25d617d8206da876df74",
-    "products/bom-delta.md": "53b70317fa68f30de4deb6d6112156c86ee0cc26e849522f3fa438cbc9345648",
-    "products/campaign-qa.md": "72ea5503248d6d3ae6d3c75b9fe637d2551a87a10168c6af8d25138b7ec28bc8",
-    "products/crm-cleanroom.md": "610e0e6ac663f93b5213906c55303db978dfcae38def8a0ae1f0330de9000c3c",
-    "products/locale-shield.md": "694a529eb018e0fc920b4f9eef5693eda610f7612c94107fb889b3dc6dca5aab",
-    "products/payout-bridge.md": "ce6c4e74ebcc26dd13f8389963cf7a8e6329ac2db0792fcbd8b122d6c8cf6328",
-    "products/queue-focus.md": "fca38314c0209ecff1b928fe0db5c21b6842d01313cada30ddedc4586974066a",
-    "products/redirect-guard.md": "e62f9a91e0f938a9be1c96bcb7052c950d4be2cfcf57232493c5acf8086e5f14",
-    "products/return-signal.md": "4795e6e2b3a4902fb0aa75495414dfbf72b1185f8dff7d1c13e7afefc29f4fcb",
-    "products/stock-window.md": "81ec75ca864bf8aeb90171908f75174f35722ebe5e79a9097383ac61a8ce6add",
-    "products/webhook-ledger.md": "e8db13a49535c2b79dfb61550b3c638037defd6b4f4c04a7499fc79050075c02"
+    "products/bom-delta.md": "00790d6b862af3a3639069b21f38d3472c4fda5415fc898d5d97b952bdb5d921",
+    "products/campaign-qa.md": "49ebc7aea164cb5614eec87db79b9c56fd0dc18264575e3f15dbeb4ab4bf21ec",
+    "products/crm-cleanroom.md": "f6d114124d45223d8b7dbedcf2f73d50fca054df02b10e6de87f454867f07e58",
+    "products/locale-shield.md": "272a96df105112822ec3faac9d57ae3dc7f77470060e09c4be37307b152635c1",
+    "products/payout-bridge.md": "79423fe65a8eafd835d273f94e287c5529fcbd1acd944a26b937e3ee5a77e6b4",
+    "products/queue-focus.md": "39cb84a9d217d045cfda50a9b0369afe96655a6ee8c1a7a31a235b33bc08ec52",
+    "products/redirect-guard.md": "b7b4e76aa99ba52477c75cc3f32fa1c5d4eb0d58cceea9c944283f90434236ab",
+    "products/return-signal.md": "9e72098533563a9471b62e7053d2e1d3672a20cf95d9b98ebd0ffb74838629eb",
+    "products/stock-window.md": "462b056cbf969ea2bb4bab6591d64be68ccac00f29fe007f4187b294d870fc57",
+    "products/webhook-ledger.md": "3a300027320383d99c7c9f3a609d80fe75a579db3e11023cc1ac68f0f03a8e3a"
   }
 }
