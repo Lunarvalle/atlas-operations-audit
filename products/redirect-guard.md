@@ -1,4 +1,4 @@
-# Redirect Guard
+# Redirect Map Checker — Loops, Chains and Migration Coverage
 
 Check a planned redirect map for duplicate sources, chains, loops and gaps in a supplied traffic inventory before deployment.
 
@@ -30,3 +30,14 @@ Static plan analysis. Does not crawl HTTP endpoints or promise search rankings.
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **SEO agencies:** Review the redirect plan before the migration goes live.
+- **Migration developers:** Find loops, chains and duplicate origins in the planned rules.
+- **E-commerce project leads:** Prioritize missing mappings using your supplied traffic inventory.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
