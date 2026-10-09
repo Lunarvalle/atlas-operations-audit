@@ -1,4 +1,4 @@
-# Campaign QA
+# Bulk UTM Link Audit — Campaign Naming and URL Checks
 
 Audit a batch of campaign links for missing or repeated UTM fields, inconsistent naming and sensitive query parameters.
 
@@ -30,3 +30,14 @@ Does not verify live analytics collection, cookies, consent or redirect behaviou
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **Paid-media agencies:** Review the campaign link batch before launch.
+- **Marketing operations teams:** Catch inconsistent UTM naming across contributors.
+- **Analytics consultants:** Deliver a reviewable list of link-level exceptions.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
