@@ -1,0 +1,4 @@
+{
+  "a": "event_id,event_type,entity_id,occurred_at,payload\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":10,\"\"token\"\":\"\"demo\"\"}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"token\"\":\"\"demo\"\",\"\"amount\"\":10}\"\r\nE2,order.updated,O1,2026-10-09T09:00:00Z,\"{\"\"amount\"\":9}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":12}\"\r\n",
+  "asOf": "2026-10-09T12:00:00Z"
+}
