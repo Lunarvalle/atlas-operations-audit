@@ -1,4 +1,4 @@
-# CRM Cleanroom
+# CRM Duplicate Review — Email, Phone and Identity Conflicts
 
 Find exact email/phone duplicate candidates and flag conflicting identity and contact-permission fields before a merge.
 
@@ -30,3 +30,14 @@ No automatic merging. Shared phone numbers may represent different people; conse
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **CRM migration agencies:** Review duplicate candidates before you merge records.
+- **Revenue operations teams:** Keep identity conflicts and contact restrictions visible.
+- **Data-cleaning consultants:** Deliver conservative duplicate groups without changing the CRM.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
