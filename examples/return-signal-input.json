@@ -1,0 +1,5 @@
+{
+  "a": "line_id,sku,units,unit_price,currency\r\nL1,SHIRT-M,5,30.00,EUR\r\nL2,SHIRT-L,10,30.00,EUR\r\n",
+  "b": "return_id,line_id,units,reason,refund_amount,handling_cost\r\nR1,L1,2,taglia piccola,60.00,8.00\r\nR2,L2,1,colore diverso,30.00,4.00\r\n",
+  "asOf": "2026-10-09T12:00:00Z"
+}
