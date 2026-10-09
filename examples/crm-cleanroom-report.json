@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "product": "crm-cleanroom",
+  "observedAt": "2026-10-09T12:00:00Z",
+  "status": "blocked",
+  "metrics": {
+    "records": 4,
+    "candidate_groups": 1,
+    "candidate_records": 3,
+    "findings": 3
+  },
+  "rows": [
+    {
+      "group": 1,
+      "record_id": "C1",
+      "name": "Ada",
+      "company": "Studio A",
+      "email": "ada@example.com",
+      "phone": "+39021234567",
+      "review": "identity_conflict",
+      "contact_status": "do_not_contact",
+      "action": "human_review_no_automatic_merge"
+    },
+    {
+      "group": 1,
+      "record_id": "C2",
+      "name": "Ada",
+      "company": "Studio A",
+      "email": "ada@example.com",
+      "phone": "+39021234567",
+      "review": "identity_conflict",
+      "contact_status": "do_not_contact",
+      "action": "human_review_no_automatic_merge"
+    },
+    {
+      "group": 1,
+      "record_id": "C3",
+      "name": "Leo",
+      "company": "Studio B",
+      "email": "leo@example.com",
+      "phone": "+39021234567",
+      "review": "identity_conflict",
+      "contact_status": "do_not_contact",
+      "action": "human_review_no_automatic_merge"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "PHONE_COUNTRY_UNKNOWN",
+      "id": "C4",
+      "message": "Phone is not explicit E.164; excluded from matching.",
+      "action": "Add the correct country code without guessing."
+    },
+    {
+      "severity": "error",
+      "code": "IDENTITY_CONFLICT",
+      "id": "1",
+      "message": "Shared contact keys connect records with differing identities.",
+      "action": "Check shared mailboxes, families and transitive matches; do not merge automatically."
+    },
+    {
+      "severity": "warning",
+      "code": "CONTACT_RESTRICTION",
+      "id": "1",
+      "message": "Contact permission is restricted or unknown.",
+      "action": "Preserve the most restrictive source; no outreach authorization is inferred."
+    }
+  ],
+  "limitations": [
+    "Candidates only; no CRM record is merged or deleted.",
+    "Email lowercasing is a matching convention, not proof of identical legal identity.",
+    "Phone-only matches can join people sharing a number; all groups require review."
+  ],
+  "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+}
