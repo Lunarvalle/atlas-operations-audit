@@ -1,0 +1,5 @@
+{
+  "a": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,10,pcs,MFR-10K,A,0.10,EUR\r\nC1,2,pcs,MFR-C10,A,0.50,EUR\r\nWIRE,2,m,W-1,A,2.00,EUR\r\n",
+  "b": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,12,pcs,MFR-10K,B,0.12,EUR\r\nC1,2,pcs,MFR-C22,B,0.70,EUR\r\nWIRE,200,cm,W-1,A,0.02,EUR\r\n",
+  "asOf": "2026-10-09T12:00:00Z"
+}
