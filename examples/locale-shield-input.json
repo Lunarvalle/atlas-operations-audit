@@ -1,0 +1,5 @@
+{
+  "a": "{\"checkout\": {\"total\": \"Total: {{amount}}\", \"pay\": \"Pay now\", \"help\": \"Read <b>carefully</b>\"}, \"welcome\": \"Welcome, {name}\"}",
+  "b": "{\"checkout\": {\"total\": \"Totale: {{importo}}\", \"pay\": \"Pay now\", \"help\": \"Leggi attentamente\"}, \"unused\": \"Vecchio testo\"}",
+  "asOf": "2026-10-09T12:00:00Z"
+}
