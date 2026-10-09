@@ -1,0 +1,7 @@
+{
+  "asOf": "2026-10-09T12:00:00Z",
+  "a": "ticket_id,status,priority,created_at,updated_at,due_at,assignee\r\nT1,open,high,2026-10-05T10:00:00Z,2026-10-06T10:00:00Z,2026-10-09T10:00:00Z,\r\nT2,pending,normal,2026-10-08T10:00:00Z,2026-10-09T09:00:00Z,2026-10-09T15:00:00Z,Giulia\r\nT3,solved,high,2026-10-07T10:00:00Z,2026-10-08T10:00:00Z,2026-10-09T10:00:00Z,Marco\r\n",
+  "options": {
+    "staleHours": 48
+  }
+}
