@@ -1,4 +1,4 @@
-# BOM Delta
+# BOM Revision Compare — Parts, Quantity and Cost Changes
 
 Compare two flat BOM revisions, separating quantity/cost changes from part, unit and currency conflicts.
 
@@ -30,3 +30,14 @@ No nested BOM explosion, component equivalence or manufacturing approval.
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **Electronics purchasing teams:** Review what changed before approving the new order.
+- **Engineering coordinators:** Separate revision changes from part and unit conflicts.
+- **Contract manufacturers:** Compare two supplied flat BOM revisions with an auditable report.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
