@@ -1,0 +1,416 @@
+[
+  {
+    "id": "stock-window",
+    "name": "Stock Window",
+    "sector": "Inventory purchasing",
+    "value": "Turn stock, reserved units, inbound units, lead times and buying constraints into a reviewable reorder worksheet.",
+    "limit": "Historical averages, not demand forecasting. Incoming stock dates must be checked.",
+    "tool": "stock_window",
+    "input": {
+      "a": "sku,on_hand,reserved,on_order,units_sold,window_days,lead_days,safety_days,pack_size,moq,unit_cost,currency\r\nA-100,12,2,0,60,30,10,5,6,12,8.50,EUR\r\nB-200,50,0,12,20,30,7,5,4,8,4.00,EUR\r\nC-300,7,0,0,0,30,14,7,1,0,12.00,EUR\r\n",
+      "options": {
+        "budget": "200",
+        "budgetCurrency": "EUR"
+      },
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "stock-window",
+      "requiredTables": {
+        "a": [
+          "sku",
+          "on_hand",
+          "reserved",
+          "on_order",
+          "units_sold",
+          "window_days",
+          "lead_days",
+          "safety_days",
+          "pack_size",
+          "moq",
+          "unit_cost",
+          "currency"
+        ],
+        "b": []
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "sku,on_hand,reserved,on_order,units_sold,window_days,lead_days,safety_days,pack_size,moq,unit_cost,currency\r\nA-100,12,2,0,60,30,10,5,6,12,8.50,EUR\r\nB-200,50,0,12,20,30,7,5,4,8,4.00,EUR\r\nC-300,7,0,0,0,30,14,7,1,0,12.00,EUR\r\n",
+        "options": {
+          "budget": "200",
+          "budgetCurrency": "EUR"
+        }
+      },
+      "limits": [
+        "Media storica, senza promessa di previsione",
+        "Arrivo delle scorte ordinate da confermare",
+        "Nessun ordine inviato"
+      ]
+    }
+  },
+  {
+    "id": "return-signal",
+    "name": "Return Signal",
+    "sector": "Returns operations",
+    "value": "Join returned line items to the matching sales cohort; separate refunds, handling cost and product/reason patterns.",
+    "limit": "Requires actual return records. A refund or order edit is not proof that a product came back.",
+    "tool": "return_signal",
+    "input": {
+      "a": "line_id,sku,units,unit_price,currency\r\nL1,SHIRT-M,5,30.00,EUR\r\nL2,SHIRT-L,10,30.00,EUR\r\n",
+      "b": "return_id,line_id,units,reason,refund_amount,handling_cost\r\nR1,L1,2,taglia piccola,60.00,8.00\r\nR2,L2,1,colore diverso,30.00,4.00\r\n",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "return-signal",
+      "requiredTables": {
+        "a": [
+          "line_id",
+          "sku",
+          "units",
+          "unit_price",
+          "currency"
+        ],
+        "b": [
+          "return_id",
+          "line_id",
+          "units",
+          "reason",
+          "refund_amount",
+          "handling_cost"
+        ]
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "line_id,sku,units,unit_price,currency\r\nL1,SHIRT-M,5,30.00,EUR\r\nL2,SHIRT-L,10,30.00,EUR\r\n",
+        "b": "return_id,line_id,units,reason,refund_amount,handling_cost\r\nR1,L1,2,taglia piccola,60.00,8.00\r\nR2,L2,1,colore diverso,30.00,4.00\r\n"
+      },
+      "limits": [
+        "Nessuna inferenza automatica sulle cause",
+        "Non calcola utile perso senza COGS e valore di recupero",
+        "Il campione deve rappresentare la coorte dichiarata"
+      ]
+    }
+  },
+  {
+    "id": "payout-bridge",
+    "name": "Payout Bridge",
+    "sector": "Settlement review",
+    "value": "Match transaction batches to payout records by exact ID and currency; expose missing batches and arithmetic differences.",
+    "limit": "No bank access, tax accounting or proof that money reached your bank.",
+    "tool": "payout_bridge",
+    "input": {
+      "a": "transaction_id,payout_id,currency,gross,fee,net\r\nT1,P1,EUR,100.00,3.00,97.00\r\nT2,P1,EUR,-20.00,0.00,-20.00\r\nT3,P2,USD,50.00,2.00,48.00\r\n",
+      "b": "payout_id,currency,amount\r\nP1,EUR,77.00\r\nP2,USD,47.50\r\n",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "payout-bridge",
+      "requiredTables": {
+        "a": [
+          "transaction_id",
+          "payout_id",
+          "currency",
+          "gross",
+          "fee",
+          "net"
+        ],
+        "b": [
+          "payout_id",
+          "currency",
+          "amount"
+        ]
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "transaction_id,payout_id,currency,gross,fee,net\r\nT1,P1,EUR,100.00,3.00,97.00\r\nT2,P1,EUR,-20.00,0.00,-20.00\r\nT3,P2,USD,50.00,2.00,48.00\r\n",
+        "b": "payout_id,currency,amount\r\nP1,EUR,77.00\r\nP2,USD,47.50\r\n"
+      },
+      "limits": [
+        "Non è contabilità fiscale né prova di accredito bancario",
+        "Pagamenti manuali richiedono assegnazione ufficiale",
+        "Formati normalizzati, sette valute supportate"
+      ]
+    }
+  },
+  {
+    "id": "redirect-guard",
+    "name": "Redirect Guard",
+    "sector": "Website migrations",
+    "value": "Check a planned redirect map for duplicate sources, chains, loops and gaps in a supplied traffic inventory before deployment.",
+    "limit": "Static plan analysis. Does not crawl HTTP endpoints or promise search rankings.",
+    "tool": "redirect_guard",
+    "input": {
+      "a": "from,to\r\n/old,/step\r\n/step,/new\r\n/loop-a,/loop-b\r\n/loop-b,/loop-a\r\n",
+      "b": "url,visits\r\n/old,800\r\n/forgotten,300\r\n/loop-a,70\r\n",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "redirect-guard",
+      "requiredTables": {
+        "a": [
+          "from",
+          "to"
+        ],
+        "b": [
+          "url",
+          "visits"
+        ]
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "from,to\r\n/old,/step\r\n/step,/new\r\n/loop-a,/loop-b\r\n/loop-b,/loop-a\r\n",
+        "b": "url,visits\r\n/old,800\r\n/forgotten,300\r\n/loop-a,70\r\n"
+      },
+      "limits": [
+        "Analisi statica: nessun test HTTP o crawling",
+        "Non garantisce ranking né recupero traffico",
+        "Visite fornite dal cliente, non stima di perdite"
+      ]
+    }
+  },
+  {
+    "id": "campaign-qa",
+    "name": "Campaign QA",
+    "sector": "Marketing operations",
+    "value": "Audit a batch of campaign links for missing or repeated UTM fields, inconsistent naming and sensitive query parameters.",
+    "limit": "Does not verify live analytics collection, cookies, consent or redirect behaviour.",
+    "tool": "campaign_qa",
+    "input": {
+      "a": "link_id,url\r\nAD1,https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn\r\nAD2,https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn\r\nAD3,https://example.com/c?utm_source=partner&token=secret-demo\r\n",
+      "options": {
+        "allowedSources": "newsletter,partner"
+      },
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "campaign-qa",
+      "requiredTables": {
+        "a": [
+          "link_id",
+          "url"
+        ],
+        "b": []
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "link_id,url\r\nAD1,https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn\r\nAD2,https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn\r\nAD3,https://example.com/c?utm_source=partner&token=secret-demo\r\n",
+        "options": {
+          "allowedSources": "newsletter,partner"
+        }
+      },
+      "limits": [
+        "Non misura conversioni o attribuzione effettiva",
+        "Non modifica silenziosamente i link",
+        "Non sostituisce controllo privacy completo"
+      ]
+    }
+  },
+  {
+    "id": "queue-focus",
+    "name": "Queue Focus",
+    "sector": "Support operations",
+    "value": "Build a review queue from explicit deadlines, assignment and last-update timestamps.",
+    "limit": "Elapsed time only. Does not reproduce a helpdesk business-hours SLA engine.",
+    "tool": "queue_focus",
+    "input": {
+      "asOf": "2026-10-09T12:00:00Z",
+      "a": "ticket_id,status,priority,created_at,updated_at,due_at,assignee\r\nT1,open,high,2026-10-05T10:00:00Z,2026-10-06T10:00:00Z,2026-10-09T10:00:00Z,\r\nT2,pending,normal,2026-10-08T10:00:00Z,2026-10-09T09:00:00Z,2026-10-09T15:00:00Z,Giulia\r\nT3,solved,high,2026-10-07T10:00:00Z,2026-10-08T10:00:00Z,2026-10-09T10:00:00Z,Marco\r\n",
+      "options": {
+        "staleHours": 48
+      }
+    },
+    "schema": {
+      "product": "queue-focus",
+      "requiredTables": {
+        "a": [
+          "ticket_id",
+          "status",
+          "priority",
+          "created_at",
+          "updated_at",
+          "due_at",
+          "assignee"
+        ],
+        "b": []
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "asOf": "2026-10-09T12:00:00Z",
+        "a": "ticket_id,status,priority,created_at,updated_at,due_at,assignee\r\nT1,open,high,2026-10-05T10:00:00Z,2026-10-06T10:00:00Z,2026-10-09T10:00:00Z,\r\nT2,pending,normal,2026-10-08T10:00:00Z,2026-10-09T09:00:00Z,2026-10-09T15:00:00Z,Giulia\r\nT3,solved,high,2026-10-07T10:00:00Z,2026-10-08T10:00:00Z,2026-10-09T10:00:00Z,Marco\r\n",
+        "options": {
+          "staleHours": 48
+        }
+      },
+      "limits": [
+        "Non ricostruisce gli orologi SLA a ore lavorative",
+        "Scadenze da esportare dal sistema sorgente",
+        "Non invia messaggi né assegna ticket"
+      ]
+    }
+  },
+  {
+    "id": "crm-cleanroom",
+    "name": "CRM Cleanroom",
+    "sector": "CRM migrations",
+    "value": "Find exact email/phone duplicate candidates and flag conflicting identity and contact-permission fields before a merge.",
+    "limit": "No automatic merging. Shared phone numbers may represent different people; consent is never inferred.",
+    "tool": "crm_cleanroom",
+    "input": {
+      "a": "record_id,email,phone,name,company,do_not_contact\r\nC1,ada@example.com,+39021234567,Ada,Studio A,false\r\nC2,ADA@example.com,+39021234567,Ada,Studio A,true\r\nC3,leo@example.com,+39021234567,Leo,Studio B,false\r\nC4,mia@example.com,02345,Mia,Studio C,\r\n",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "crm-cleanroom",
+      "requiredTables": {
+        "a": [
+          "record_id",
+          "email",
+          "phone",
+          "name",
+          "company",
+          "do_not_contact"
+        ],
+        "b": []
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "record_id,email,phone,name,company,do_not_contact\r\nC1,ada@example.com,+39021234567,Ada,Studio A,false\r\nC2,ADA@example.com,+39021234567,Ada,Studio A,true\r\nC3,leo@example.com,+39021234567,Leo,Studio B,false\r\nC4,mia@example.com,02345,Mia,Studio C,\r\n"
+      },
+      "limits": [
+        "Nessuna fusione o cancellazione nel CRM",
+        "Una chiave condivisa non prova identità",
+        "Consenso marketing mai dedotto dal rapporto"
+      ]
+    }
+  },
+  {
+    "id": "webhook-ledger",
+    "name": "Webhook Ledger",
+    "sector": "Integration incident review",
+    "value": "Audit exported event logs for repeated identities, conflicting payloads, ordering anomalies and sensitive field names.",
+    "limit": "Offline review only. No receiving, sending, replaying or proof of receiver-side idempotency.",
+    "tool": "webhook_ledger",
+    "input": {
+      "a": "event_id,event_type,entity_id,occurred_at,payload\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":10,\"\"token\"\":\"\"demo\"\"}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"token\"\":\"\"demo\"\",\"\"amount\"\":10}\"\r\nE2,order.updated,O1,2026-10-09T09:00:00Z,\"{\"\"amount\"\":9}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":12}\"\r\n",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "webhook-ledger",
+      "requiredTables": {
+        "a": [
+          "event_id",
+          "event_type",
+          "entity_id",
+          "occurred_at",
+          "payload"
+        ],
+        "b": []
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "event_id,event_type,entity_id,occurred_at,payload\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":10,\"\"token\"\":\"\"demo\"\"}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"token\"\":\"\"demo\"\",\"\"amount\"\":10}\"\r\nE2,order.updated,O1,2026-10-09T09:00:00Z,\"{\"\"amount\"\":9}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":12}\"\r\n"
+      },
+      "limits": [
+        "Analisi offline, nessun evento inviato o ripetuto",
+        "Non prova idempotenza del ricevitore",
+        "Il piano è da revisionare con le ricevute reali"
+      ]
+    }
+  },
+  {
+    "id": "locale-shield",
+    "name": "Locale Shield",
+    "sector": "Translation releases",
+    "value": "Compare JSON dictionaries for missing/empty strings, simple placeholder and tag differences, and review signals.",
+    "limit": "Not translation quality review. Complex ICU messages need a specialist parser; no source-code unused-key analysis.",
+    "tool": "locale_shield",
+    "input": {
+      "a": "{\"checkout\": {\"total\": \"Total: {{amount}}\", \"pay\": \"Pay now\", \"help\": \"Read <b>carefully</b>\"}, \"welcome\": \"Welcome, {name}\"}",
+      "b": "{\"checkout\": {\"total\": \"Totale: {{importo}}\", \"pay\": \"Pay now\", \"help\": \"Leggi attentamente\"}, \"unused\": \"Vecchio testo\"}",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "locale-shield",
+      "requiredTables": {
+        "a": [],
+        "b": []
+      },
+      "inputFormat": "json",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "{\"checkout\": {\"total\": \"Total: {{amount}}\", \"pay\": \"Pay now\", \"help\": \"Read <b>carefully</b>\"}, \"welcome\": \"Welcome, {name}\"}",
+        "b": "{\"checkout\": {\"total\": \"Totale: {{importo}}\", \"pay\": \"Pay now\", \"help\": \"Leggi attentamente\"}, \"unused\": \"Vecchio testo\"}"
+      },
+      "limits": [
+        "Non valuta significato o qualità linguistica",
+        "ICU complesso richiede controlli specialistici",
+        "Non verifica il rendering nell’app"
+      ]
+    }
+  },
+  {
+    "id": "bom-delta",
+    "name": "BOM Delta",
+    "sector": "Engineering procurement",
+    "value": "Compare two flat BOM revisions, separating quantity/cost changes from part, unit and currency conflicts.",
+    "limit": "No nested BOM explosion, component equivalence or manufacturing approval.",
+    "tool": "bom_delta",
+    "input": {
+      "a": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,10,pcs,MFR-10K,A,0.10,EUR\r\nC1,2,pcs,MFR-C10,A,0.50,EUR\r\nWIRE,2,m,W-1,A,2.00,EUR\r\n",
+      "b": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,12,pcs,MFR-10K,B,0.12,EUR\r\nC1,2,pcs,MFR-C22,B,0.70,EUR\r\nWIRE,200,cm,W-1,A,0.02,EUR\r\n",
+      "asOf": "2026-10-09T12:00:00Z"
+    },
+    "schema": {
+      "product": "bom-delta",
+      "requiredTables": {
+        "a": [
+          "part_id",
+          "quantity",
+          "unit",
+          "manufacturer_part",
+          "revision",
+          "unit_cost",
+          "currency"
+        ],
+        "b": [
+          "part_id",
+          "quantity",
+          "unit",
+          "manufacturer_part",
+          "revision",
+          "unit_cost",
+          "currency"
+        ]
+      },
+      "inputFormat": "csv",
+      "maximumRows": 5000,
+      "maximumBytesPerFile": 2097152,
+      "sample": {
+        "a": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,10,pcs,MFR-10K,A,0.10,EUR\r\nC1,2,pcs,MFR-C10,A,0.50,EUR\r\nWIRE,2,m,W-1,A,2.00,EUR\r\n",
+        "b": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,12,pcs,MFR-10K,B,0.12,EUR\r\nC1,2,pcs,MFR-C22,B,0.70,EUR\r\nWIRE,200,cm,W-1,A,0.02,EUR\r\n"
+      },
+      "limits": [
+        "Distinta piatta, senza esplosione multilivello",
+        "Nessuna equivalenza tecnica o sicurezza certificata",
+        "Assenza nel file non equivale a rimozione approvata"
+      ]
+    }
+  }
+]
