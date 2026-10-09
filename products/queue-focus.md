@@ -1,4 +1,4 @@
-# Queue Focus
+# Support Queue Audit — Overdue, Stale and Unassigned Tickets
 
 Build a review queue from explicit deadlines, assignment and last-update timestamps.
 
@@ -30,3 +30,14 @@ Elapsed time only. Does not reproduce a helpdesk business-hours SLA engine.
 ## Availability
 
 The functional browser/CLI edition is built and internally tested. The hosted paid service is being qualified; this repository is a public technical preview, not a checkout. No customer revenue or independent usability result is claimed.
+
+<!-- positioning-v1 -->
+## Who this review is for
+
+- **Support team leads:** See which exported tickets need a review now.
+- **Outsourced support providers:** Review an explicit-deadline queue across assignments.
+- **Service operations analysts:** Separate closed tickets from overdue and stalled work.
+
+## Purchasing scope
+
+This page describes one product. The example report is a fixed synthetic preview; it cannot process your files. Commercial access is not open yet. A future individual licence or paid tool call must name this product explicitly. No purchase of this product is represented as access to the full Atlas portfolio.
