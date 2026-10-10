@@ -1,0 +1,71 @@
+{
+  "a": "url,status_code,content_hash\r\nhttps://example.org/a,200,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\nhttps://example.org/b,200,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n",
+  "b": "url,status_code,content_hash\r\nhttps://example.org/a,200,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\r\nhttps://example.org/c,404,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "change-proof",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "urls": 3,
+      "findings": 3
+    },
+    "rows": [
+      {
+        "url": "https://example.org/a",
+        "status": "content_changed",
+        "previous_http": "200",
+        "current_http": "200",
+        "previous_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "current_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      {
+        "url": "https://example.org/b",
+        "status": "missing",
+        "previous_http": "200",
+        "current_http": null,
+        "previous_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "current_hash": null
+      },
+      {
+        "url": "https://example.org/c",
+        "status": "added",
+        "previous_http": null,
+        "current_http": "404",
+        "previous_hash": null,
+        "current_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "CONTENT_CHANGED",
+        "id": "https://example.org/a",
+        "message": "Snapshot differs.",
+        "action": "Review the captured page and the intended change."
+      },
+      {
+        "severity": "error",
+        "code": "MISSING",
+        "id": "https://example.org/b",
+        "message": "Snapshot differs.",
+        "action": "Review the captured page and the intended change."
+      },
+      {
+        "severity": "warning",
+        "code": "ADDED",
+        "id": "https://example.org/c",
+        "message": "Snapshot differs.",
+        "action": "Review the captured page and the intended change."
+      }
+    ],
+    "limitations": [
+      "Compares supplied snapshots; no website is crawled or monitored. A content hash change does not establish a visual regression or its cause."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
