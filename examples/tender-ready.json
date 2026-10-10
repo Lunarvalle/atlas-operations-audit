@@ -1,0 +1,49 @@
+{
+  "a": "requirement_id,mandatory,weight,deadline\r\nR1,true,2,2026-10-20T12:00:00Z\r\nR2,false,1,2026-10-01T12:00:00Z\r\n",
+  "b": "requirement_id,status,evidence_ref,owner\r\nR1,ready,document-1.pdf,Buyer\r\nR2,pending,,\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "tender-ready",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "weighted_coverage": 0.6667,
+      "findings": 1
+    },
+    "rows": [
+      {
+        "requirement_id": "R1",
+        "status": "documented",
+        "mandatory": "true",
+        "owner": "Buyer",
+        "evidence_ref": "document-1.pdf",
+        "deadline": "2026-10-20T12:00:00Z"
+      },
+      {
+        "requirement_id": "R2",
+        "status": "overdue",
+        "mandatory": "false",
+        "owner": "",
+        "evidence_ref": "",
+        "deadline": "2026-10-01T12:00:00Z"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "OVERDUE",
+        "id": "R2",
+        "message": "Requirement lacks a ready owned evidence reference.",
+        "action": "Complete and review the response before submission."
+      }
+    ],
+    "limitations": [
+      "Submission checklist only; supplied weights are not an award prediction. Does not verify legal eligibility, evidence content or submit tenders. Mandatory not_applicable responses require review."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
