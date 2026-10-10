@@ -1,0 +1,103 @@
+{
+  "a": "event_id,event_type,entity_id,occurred_at,payload\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":10,\"\"token\"\":\"\"demo\"\"}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"token\"\":\"\"demo\"\",\"\"amount\"\":10}\"\r\nE2,order.updated,O1,2026-10-09T09:00:00Z,\"{\"\"amount\"\":9}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":12}\"\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "webhook-ledger",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "events": 4,
+      "unique_event_ids": 2,
+      "duplicates": 1,
+      "findings": 5
+    },
+    "rows": [
+      {
+        "row": 1,
+        "event_id": "E1",
+        "event_type": "order.updated",
+        "entity_id": "O1",
+        "occurred_at": "2026-10-09T10:00:00Z",
+        "state": "unique",
+        "proposed_action": "candidate_for_idempotent_handler",
+        "sensitive_fields": 1
+      },
+      {
+        "row": 2,
+        "event_id": "E1",
+        "event_type": "order.updated",
+        "entity_id": "O1",
+        "occurred_at": "2026-10-09T10:00:00Z",
+        "state": "duplicate_retry",
+        "proposed_action": "skip_duplicate_in_dry_run",
+        "sensitive_fields": 1
+      },
+      {
+        "row": 3,
+        "event_id": "E2",
+        "event_type": "order.updated",
+        "entity_id": "O1",
+        "occurred_at": "2026-10-09T09:00:00Z",
+        "state": "unique",
+        "proposed_action": "hold_order_review",
+        "sensitive_fields": 0
+      },
+      {
+        "row": 4,
+        "event_id": "E1",
+        "event_type": "order.updated",
+        "entity_id": "O1",
+        "occurred_at": "2026-10-09T10:00:00Z",
+        "state": "identity_collision",
+        "proposed_action": "hold_investigate",
+        "sensitive_fields": 0
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "SENSITIVE_FIELDS",
+        "id": "E1",
+        "message": "Payload has 1 recognized sensitive field names; values omitted from report.",
+        "action": "Redact logs before sharing."
+      },
+      {
+        "severity": "warning",
+        "code": "DUPLICATE_RETRY",
+        "id": "E1",
+        "message": "Repeated event identity and canonical content.",
+        "action": "Inspect receiver receipt before any live replay."
+      },
+      {
+        "severity": "warning",
+        "code": "SENSITIVE_FIELDS",
+        "id": "E1",
+        "message": "Payload has 1 recognized sensitive field names; values omitted from report.",
+        "action": "Redact logs before sharing."
+      },
+      {
+        "severity": "warning",
+        "code": "OUT_OF_ORDER",
+        "id": "E2",
+        "message": "Entity timestamp is earlier than a previously supplied row.",
+        "action": "Review ordering; do not infer current state by arrival order."
+      },
+      {
+        "severity": "error",
+        "code": "IDENTITY_COLLISION",
+        "id": "E1",
+        "message": "One event ID has differing content.",
+        "action": "Inspect receiver receipt before any live replay."
+      }
+    ],
+    "limitations": [
+      "Offline evidence and dry-run only. No webhook is received, sent or replayed.",
+      "Payload content is omitted from results; redaction detection is not exhaustive.",
+      "Idempotency cannot be proven without receiver-side processing receipts."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
