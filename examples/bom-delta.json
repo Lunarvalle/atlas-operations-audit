@@ -1,0 +1,98 @@
+{
+  "a": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,10,pcs,MFR-10K,A,0.10,EUR\r\nC1,2,pcs,MFR-C10,A,0.50,EUR\r\nWIRE,2,m,W-1,A,2.00,EUR\r\n",
+  "b": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,12,pcs,MFR-10K,B,0.12,EUR\r\nC1,2,pcs,MFR-C22,B,0.70,EUR\r\nWIRE,200,cm,W-1,A,0.02,EUR\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "bom-delta",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "parts_after": 3,
+      "changed": 3,
+      "new_bom_cost": {
+        "EUR": 6.84
+      },
+      "findings": 4
+    },
+    "rows": [
+      {
+        "part_id": "R10",
+        "status": "changed",
+        "previous_quantity": 10,
+        "new_quantity": 12,
+        "unit": "pcs",
+        "currency": "EUR",
+        "quantity_delta": 2,
+        "extended_cost_delta": 0.44,
+        "previous_mpn": "MFR-10K",
+        "new_mpn": "MFR-10K",
+        "issues": "REVISION_CHANGED"
+      },
+      {
+        "part_id": "C1",
+        "status": "changed",
+        "previous_quantity": 2,
+        "new_quantity": 2,
+        "unit": "pcs",
+        "currency": "EUR",
+        "quantity_delta": 0,
+        "extended_cost_delta": 0.4,
+        "previous_mpn": "MFR-C10",
+        "new_mpn": "MFR-C22",
+        "issues": "MPN_CHANGED_REQUIRES_ENGINEERING_REVIEW;REVISION_CHANGED"
+      },
+      {
+        "part_id": "WIRE",
+        "status": "incomparable",
+        "previous_quantity": 2,
+        "new_quantity": 200,
+        "unit": "cm",
+        "currency": "EUR",
+        "quantity_delta": null,
+        "extended_cost_delta": null,
+        "previous_mpn": "W-1",
+        "new_mpn": "W-1",
+        "issues": "UNIT_OR_CURRENCY_CHANGED"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "REVISION_CHANGED",
+        "id": "R10",
+        "message": "BOM revision requires a specific review.",
+        "action": "Confirm part identity, unit and engineering approval; no substitute is certified."
+      },
+      {
+        "severity": "error",
+        "code": "MPN_CHANGED_REQUIRES_ENGINEERING_REVIEW",
+        "id": "C1",
+        "message": "BOM revision requires a specific review.",
+        "action": "Confirm part identity, unit and engineering approval; no substitute is certified."
+      },
+      {
+        "severity": "warning",
+        "code": "REVISION_CHANGED",
+        "id": "C1",
+        "message": "BOM revision requires a specific review.",
+        "action": "Confirm part identity, unit and engineering approval; no substitute is certified."
+      },
+      {
+        "severity": "error",
+        "code": "UNIT_OR_CURRENCY_CHANGED",
+        "id": "WIRE",
+        "message": "BOM revision requires a specific review.",
+        "action": "Confirm part identity, unit and engineering approval; no substitute is certified."
+      }
+    ],
+    "limitations": [
+      "Flat BOM only; quantities are per supplied assembly and are not exploded across nested assemblies.",
+      "Manufacturer part changes are not assessed for electrical, mechanical, safety or regulatory interchangeability.",
+      "Missing parts may reflect incomplete exports, not an approved removal."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
