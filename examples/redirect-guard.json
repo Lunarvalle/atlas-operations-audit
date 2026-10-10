@@ -1,0 +1,102 @@
+{
+  "a": "from,to\r\n/old,/step\r\n/step,/new\r\n/loop-a,/loop-b\r\n/loop-b,/loop-a\r\n",
+  "b": "url,visits\r\n/old,800\r\n/forgotten,300\r\n/loop-a,70\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "redirect-guard",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "rules": 4,
+      "loops": 2,
+      "unmapped": 1,
+      "findings": 4
+    },
+    "rows": [
+      {
+        "from": "/old",
+        "to": "/step",
+        "final_destination": "/new",
+        "hops": 2,
+        "visits": 800,
+        "status": "chain",
+        "live_http_status": "not_fetched"
+      },
+      {
+        "from": "/forgotten",
+        "to": null,
+        "final_destination": null,
+        "hops": 0,
+        "visits": 300,
+        "status": "unmapped_inventory_url",
+        "live_http_status": "not_fetched"
+      },
+      {
+        "from": "/loop-a",
+        "to": "/loop-b",
+        "final_destination": null,
+        "hops": 2,
+        "visits": 70,
+        "status": "loop",
+        "live_http_status": "not_fetched"
+      },
+      {
+        "from": "/step",
+        "to": "/new",
+        "final_destination": "/new",
+        "hops": 1,
+        "visits": 0,
+        "status": "direct",
+        "live_http_status": "not_fetched"
+      },
+      {
+        "from": "/loop-b",
+        "to": "/loop-a",
+        "final_destination": null,
+        "hops": 2,
+        "visits": 0,
+        "status": "loop",
+        "live_http_status": "not_fetched"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "CHAIN",
+        "id": "/old",
+        "message": "Multiple redirects before the final mapped destination.",
+        "action": "Review direct final destination proposal."
+      },
+      {
+        "severity": "error",
+        "code": "LOOP",
+        "id": "/loop-a",
+        "message": "Redirect path cannot safely resolve.",
+        "action": "Resolve loop or duplicate sources; do not deploy."
+      },
+      {
+        "severity": "error",
+        "code": "LOOP",
+        "id": "/loop-b",
+        "message": "Redirect path cannot safely resolve.",
+        "action": "Resolve loop or duplicate sources; do not deploy."
+      },
+      {
+        "severity": "warning",
+        "code": "UNMAPPED",
+        "id": "/forgotten",
+        "message": "Traffic inventory URL has no redirect rule.",
+        "action": "Confirm it is unchanged or add the intended mapping."
+      }
+    ],
+    "limitations": [
+      "Static graph review only: no crawling, HTTP checks, canonical/indexing verification or SEO guarantee.",
+      "Visits are supplied exposure, not measured lost traffic.",
+      "Root-relative URLs and absolute URLs are separate identities; use one consistent representation."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
