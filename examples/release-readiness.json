@@ -1,0 +1,54 @@
+{
+  "a": "check_id,required,max_age_hours\r\nC1,true,48\r\nC2,true,48\r\n",
+  "b": "check_id,result,tested_at,artifact_hash,evidence_ref\r\nC1,passed,2026-10-09T12:00:00Z,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,test-1\r\nC2,passed,2026-10-01T12:00:00Z,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,test-2\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {
+    "artifactHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "release-readiness",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "checks": 2,
+      "findings": 2
+    },
+    "rows": [
+      {
+        "check_id": "C1",
+        "required": "true",
+        "issues": "",
+        "status": "documented"
+      },
+      {
+        "check_id": "C2",
+        "required": "true",
+        "issues": "TEST_STALE;ARTIFACT_MISMATCH",
+        "status": "review"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "TEST_STALE",
+        "id": "C2",
+        "message": "Release evidence does not satisfy this check.",
+        "action": "Retest the exact artifact and retain the receipt."
+      },
+      {
+        "severity": "error",
+        "code": "ARTIFACT_MISMATCH",
+        "id": "C2",
+        "message": "Release evidence does not satisfy this check.",
+        "action": "Retest the exact artifact and retain the receipt."
+      }
+    ],
+    "limitations": [
+      "Validates supplied receipt metadata only. Does not execute tests, verify signatures, certify security or deploy software."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
