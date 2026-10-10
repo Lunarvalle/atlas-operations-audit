@@ -2,414 +2,1102 @@
   {
     "id": "stock-window",
     "name": "Stock Window",
-    "sector": "Inventory purchasing",
-    "value": "Turn stock, reserved units, inbound units, lead times and buying constraints into a reviewable reorder worksheet.",
-    "limit": "Historical averages, not demand forecasting. Incoming stock dates must be checked.",
-    "tool": "stock_window",
-    "input": {
-      "a": "sku,on_hand,reserved,on_order,units_sold,window_days,lead_days,safety_days,pack_size,moq,unit_cost,currency\r\nA-100,12,2,0,60,30,10,5,6,12,8.50,EUR\r\nB-200,50,0,12,20,30,7,5,4,8,4.00,EUR\r\nC-300,7,0,0,0,30,14,7,1,0,12.00,EUR\r\n",
-      "options": {
-        "budget": "200",
-        "budgetCurrency": "EUR"
-      },
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "stock-window",
-      "requiredTables": {
-        "a": [
-          "sku",
-          "on_hand",
-          "reserved",
-          "on_order",
-          "units_sold",
-          "window_days",
-          "lead_days",
-          "safety_days",
-          "pack_size",
-          "moq",
-          "unit_cost",
-          "currency"
-        ],
-        "b": []
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "sku,on_hand,reserved,on_order,units_sold,window_days,lead_days,safety_days,pack_size,moq,unit_cost,currency\r\nA-100,12,2,0,60,30,10,5,6,12,8.50,EUR\r\nB-200,50,0,12,20,30,7,5,4,8,4.00,EUR\r\nC-300,7,0,0,0,30,14,7,1,0,12.00,EUR\r\n",
-        "options": {
-          "budget": "200",
-          "budgetCurrency": "EUR"
-        }
-      },
-      "limits": [
-        "Media storica, senza promessa di previsione",
-        "Arrivo delle scorte ordinate da confermare",
-        "Nessun ordine inviato"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/stock-window.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Prioritize reorder quantities from stock, demand, pack sizes and budget.",
+        "Historical-average scenario; confirm inbound delivery dates. No purchase order is placed."
+      ],
+      "it": [
+        "Dai priorità ai riordini con scorte, domanda, confezioni e budget.",
+        "Scenario su media storica; conferma gli arrivi. Nessun ordine viene inviato."
+      ],
+      "fr": [
+        "Priorisez les réapprovisionnements avec stock, demande, lots et budget.",
+        "Scénario fondé sur une moyenne historique ; confirmez les livraisons. Aucune commande envoyée."
+      ],
+      "zh": [
+        "根据库存、需求、包装数量和预算确定补货优先级。",
+        "基于历史平均值的情景计算；请确认到货日期。不会下单。"
+      ],
+      "es": [
+        "Prioriza reposiciones según existencias, demanda, lotes y presupuesto.",
+        "Escenario basado en medias históricas; confirma las entregas. No se envían pedidos."
       ]
     }
   },
   {
     "id": "return-signal",
     "name": "Return Signal",
-    "sector": "Returns operations",
-    "value": "Join returned line items to the matching sales cohort; separate refunds, handling cost and product/reason patterns.",
-    "limit": "Requires actual return records. A refund or order edit is not proof that a product came back.",
-    "tool": "return_signal",
-    "input": {
-      "a": "line_id,sku,units,unit_price,currency\r\nL1,SHIRT-M,5,30.00,EUR\r\nL2,SHIRT-L,10,30.00,EUR\r\n",
-      "b": "return_id,line_id,units,reason,refund_amount,handling_cost\r\nR1,L1,2,taglia piccola,60.00,8.00\r\nR2,L2,1,colore diverso,30.00,4.00\r\n",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "return-signal",
-      "requiredTables": {
-        "a": [
-          "line_id",
-          "sku",
-          "units",
-          "unit_price",
-          "currency"
-        ],
-        "b": [
-          "return_id",
-          "line_id",
-          "units",
-          "reason",
-          "refund_amount",
-          "handling_cost"
-        ]
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "line_id,sku,units,unit_price,currency\r\nL1,SHIRT-M,5,30.00,EUR\r\nL2,SHIRT-L,10,30.00,EUR\r\n",
-        "b": "return_id,line_id,units,reason,refund_amount,handling_cost\r\nR1,L1,2,taglia piccola,60.00,8.00\r\nR2,L2,1,colore diverso,30.00,4.00\r\n"
-      },
-      "limits": [
-        "Nessuna inferenza automatica sulle cause",
-        "Non calcola utile perso senza COGS e valore di recupero",
-        "Il campione deve rappresentare la coorte dichiarata"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/return-signal.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Compare physical returns with the supplied sales cohort.",
+        "Returns must match exact sales-line IDs. Refunds and handling costs do not establish profit."
+      ],
+      "it": [
+        "Confronta i resi fisici con la coorte di vendite fornita.",
+        "I resi devono corrispondere agli ID delle righe vendita. Rimborsi e costi di gestione non dimostrano l’utile."
+      ],
+      "fr": [
+        "Comparez les retours physiques à la cohorte de ventes fournie.",
+        "Correspondance exacte des identifiants de lignes requise. Remboursements et frais ne déterminent pas le bénéfice."
+      ],
+      "zh": [
+        "将实物退货与所提供的销售群组进行比较。",
+        "必须精确匹配销售行标识。退款和处理成本不能证明利润。"
+      ],
+      "es": [
+        "Compara devoluciones físicas con la cohorte de ventas proporcionada.",
+        "Se requieren identificadores exactos de líneas. Reembolsos y costes de gestión no prueban beneficios."
       ]
     }
   },
   {
     "id": "payout-bridge",
     "name": "Payout Bridge",
-    "sector": "Settlement review",
-    "value": "Match transaction batches to payout records by exact ID and currency; expose missing batches and arithmetic differences.",
-    "limit": "No bank access, tax accounting or proof that money reached your bank.",
-    "tool": "payout_bridge",
-    "input": {
-      "a": "transaction_id,payout_id,currency,gross,fee,net\r\nT1,P1,EUR,100.00,3.00,97.00\r\nT2,P1,EUR,-20.00,0.00,-20.00\r\nT3,P2,USD,50.00,2.00,48.00\r\n",
-      "b": "payout_id,currency,amount\r\nP1,EUR,77.00\r\nP2,USD,47.50\r\n",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "payout-bridge",
-      "requiredTables": {
-        "a": [
-          "transaction_id",
-          "payout_id",
-          "currency",
-          "gross",
-          "fee",
-          "net"
-        ],
-        "b": [
-          "payout_id",
-          "currency",
-          "amount"
-        ]
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "transaction_id,payout_id,currency,gross,fee,net\r\nT1,P1,EUR,100.00,3.00,97.00\r\nT2,P1,EUR,-20.00,0.00,-20.00\r\nT3,P2,USD,50.00,2.00,48.00\r\n",
-        "b": "payout_id,currency,amount\r\nP1,EUR,77.00\r\nP2,USD,47.50\r\n"
-      },
-      "limits": [
-        "Non è contabilità fiscale né prova di accredito bancario",
-        "Pagamenti manuali richiedono assegnazione ufficiale",
-        "Formati normalizzati, sette valute supportate"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/payout-bridge.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Reconcile net transactions with exact payout IDs and currencies.",
+        "Matching arithmetic does not prove receipt in a bank account. No tax or revenue recognition."
+      ],
+      "it": [
+        "Riconcilia transazioni nette con ID e valute esatti dei pagamenti.",
+        "La corrispondenza aritmetica non prova l’accredito in banca. Nessuna valutazione fiscale o contabile."
+      ],
+      "fr": [
+        "Rapprochez les transactions nettes avec les identifiants et devises des versements.",
+        "Une concordance arithmétique ne prouve pas un crédit bancaire. Aucune validation fiscale ou comptable."
+      ],
+      "zh": [
+        "按准确的付款标识和币种核对净交易金额。",
+        "算术一致不等于银行已到账。不提供税务或收入确认判断。"
+      ],
+      "es": [
+        "Concilia transacciones netas con identificadores y monedas exactos de pagos.",
+        "La coincidencia aritmética no prueba el ingreso bancario. Sin validación fiscal o contable."
       ]
     }
   },
   {
     "id": "redirect-guard",
     "name": "Redirect Guard",
-    "sector": "Website migrations",
-    "value": "Check a planned redirect map for duplicate sources, chains, loops and gaps in a supplied traffic inventory before deployment.",
-    "limit": "Static plan analysis. Does not crawl HTTP endpoints or promise search rankings.",
-    "tool": "redirect_guard",
-    "input": {
-      "a": "from,to\r\n/old,/step\r\n/step,/new\r\n/loop-a,/loop-b\r\n/loop-b,/loop-a\r\n",
-      "b": "url,visits\r\n/old,800\r\n/forgotten,300\r\n/loop-a,70\r\n",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "redirect-guard",
-      "requiredTables": {
-        "a": [
-          "from",
-          "to"
-        ],
-        "b": [
-          "url",
-          "visits"
-        ]
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "from,to\r\n/old,/step\r\n/step,/new\r\n/loop-a,/loop-b\r\n/loop-b,/loop-a\r\n",
-        "b": "url,visits\r\n/old,800\r\n/forgotten,300\r\n/loop-a,70\r\n"
-      },
-      "limits": [
-        "Analisi statica: nessun test HTTP o crawling",
-        "Non garantisce ranking né recupero traffico",
-        "Visite fornite dal cliente, non stima di perdite"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/redirect-guard.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Find loops, chains and uncovered URLs before a migration.",
+        "Static redirect-map audit. No HTTP requests; supplied traffic only."
+      ],
+      "it": [
+        "Trova cicli, catene e URL scoperti prima della migrazione.",
+        "Controllo statico della mappa redirect. Nessuna richiesta HTTP; solo traffico fornito."
+      ],
+      "fr": [
+        "Repérez boucles, chaînes et URL non couvertes avant migration.",
+        "Audit statique des redirections. Aucune requête HTTP ; trafic fourni uniquement."
+      ],
+      "zh": [
+        "在迁移前发现重定向循环、链条和未覆盖网址。",
+        "仅检查静态重定向映射。不发送 HTTP 请求；流量由用户提供。"
+      ],
+      "es": [
+        "Detecta bucles, cadenas y URL sin cubrir antes de migrar.",
+        "Auditoría estática de redirecciones. Sin solicitudes HTTP; solo tráfico proporcionado."
       ]
     }
   },
   {
     "id": "campaign-qa",
     "name": "Campaign QA",
-    "sector": "Marketing operations",
-    "value": "Audit a batch of campaign links for missing or repeated UTM fields, inconsistent naming and sensitive query parameters.",
-    "limit": "Does not verify live analytics collection, cookies, consent or redirect behaviour.",
-    "tool": "campaign_qa",
-    "input": {
-      "a": "link_id,url\r\nAD1,https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn\r\nAD2,https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn\r\nAD3,https://example.com/c?utm_source=partner&token=secret-demo\r\n",
-      "options": {
-        "allowedSources": "newsletter,partner"
-      },
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "campaign-qa",
-      "requiredTables": {
-        "a": [
-          "link_id",
-          "url"
-        ],
-        "b": []
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "link_id,url\r\nAD1,https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn\r\nAD2,https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn\r\nAD3,https://example.com/c?utm_source=partner&token=secret-demo\r\n",
-        "options": {
-          "allowedSources": "newsletter,partner"
-        }
-      },
-      "limits": [
-        "Non misura conversioni o attribuzione effettiva",
-        "Non modifica silenziosamente i link",
-        "Non sostituisce controllo privacy completo"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/campaign-qa.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Check campaign URL tags, naming consistency and duplicates.",
+        "No live Analytics verification or attribution guarantee. Sensitive query values are masked."
+      ],
+      "it": [
+        "Controlla tag delle campagne, coerenza dei nomi e duplicati.",
+        "Nessuna verifica Analytics live o garanzia di attribuzione. I valori sensibili sono mascherati."
+      ],
+      "fr": [
+        "Vérifiez les tags de campagne, la cohérence des noms et les doublons.",
+        "Aucune vérification Analytics en direct ni garantie d’attribution. Valeurs sensibles masquées."
+      ],
+      "zh": [
+        "检查营销链接标签、命名一致性和重复项。",
+        "不进行实时 Analytics 核验，也不保证归因。敏感查询值会被遮蔽。"
+      ],
+      "es": [
+        "Comprueba etiquetas de campañas, coherencia de nombres y duplicados.",
+        "Sin verificación de Analytics en directo ni garantía de atribución. Los valores sensibles se ocultan."
       ]
     }
   },
   {
     "id": "queue-focus",
     "name": "Queue Focus",
-    "sector": "Support operations",
-    "value": "Build a review queue from explicit deadlines, assignment and last-update timestamps.",
-    "limit": "Elapsed time only. Does not reproduce a helpdesk business-hours SLA engine.",
-    "tool": "queue_focus",
-    "input": {
-      "asOf": "2026-10-09T12:00:00Z",
-      "a": "ticket_id,status,priority,created_at,updated_at,due_at,assignee\r\nT1,open,high,2026-10-05T10:00:00Z,2026-10-06T10:00:00Z,2026-10-09T10:00:00Z,\r\nT2,pending,normal,2026-10-08T10:00:00Z,2026-10-09T09:00:00Z,2026-10-09T15:00:00Z,Giulia\r\nT3,solved,high,2026-10-07T10:00:00Z,2026-10-08T10:00:00Z,2026-10-09T10:00:00Z,Marco\r\n",
-      "options": {
-        "staleHours": 48
-      }
-    },
-    "schema": {
-      "product": "queue-focus",
-      "requiredTables": {
-        "a": [
-          "ticket_id",
-          "status",
-          "priority",
-          "created_at",
-          "updated_at",
-          "due_at",
-          "assignee"
-        ],
-        "b": []
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "asOf": "2026-10-09T12:00:00Z",
-        "a": "ticket_id,status,priority,created_at,updated_at,due_at,assignee\r\nT1,open,high,2026-10-05T10:00:00Z,2026-10-06T10:00:00Z,2026-10-09T10:00:00Z,\r\nT2,pending,normal,2026-10-08T10:00:00Z,2026-10-09T09:00:00Z,2026-10-09T15:00:00Z,Giulia\r\nT3,solved,high,2026-10-07T10:00:00Z,2026-10-08T10:00:00Z,2026-10-09T10:00:00Z,Marco\r\n",
-        "options": {
-          "staleHours": 48
-        }
-      },
-      "limits": [
-        "Non ricostruisce gli orologi SLA a ore lavorative",
-        "Scadenze da esportare dal sistema sorgente",
-        "Non invia messaggi né assegna ticket"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/queue-focus.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Prioritize overdue, unassigned and inactive support tickets.",
+        "Requires explicit deadlines. Does not reconstruct business-hour SLA clocks or send replies."
+      ],
+      "it": [
+        "Dai priorità a ticket scaduti, non assegnati e inattivi.",
+        "Richiede scadenze esplicite. Non ricostruisce SLA in ore lavorative e non invia risposte."
+      ],
+      "fr": [
+        "Priorisez les tickets en retard, non attribués ou inactifs.",
+        "Échéances explicites requises. Ne reconstruit pas les SLA en heures ouvrées et n’envoie pas de réponses."
+      ],
+      "zh": [
+        "优先处理逾期、未分配和长期未更新的工单。",
+        "需要明确截止时间。不重建工作时间 SLA，也不发送回复。"
+      ],
+      "es": [
+        "Prioriza tickets vencidos, sin asignar e inactivos.",
+        "Requiere plazos explícitos. No reconstruye SLA en horas laborables ni envía respuestas."
       ]
     }
   },
   {
     "id": "crm-cleanroom",
     "name": "CRM Cleanroom",
-    "sector": "CRM migrations",
-    "value": "Find exact email/phone duplicate candidates and flag conflicting identity and contact-permission fields before a merge.",
-    "limit": "No automatic merging. Shared phone numbers may represent different people; consent is never inferred.",
-    "tool": "crm_cleanroom",
-    "input": {
-      "a": "record_id,email,phone,name,company,do_not_contact\r\nC1,ada@example.com,+39021234567,Ada,Studio A,false\r\nC2,ADA@example.com,+39021234567,Ada,Studio A,true\r\nC3,leo@example.com,+39021234567,Leo,Studio B,false\r\nC4,mia@example.com,02345,Mia,Studio C,\r\n",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "crm-cleanroom",
-      "requiredTables": {
-        "a": [
-          "record_id",
-          "email",
-          "phone",
-          "name",
-          "company",
-          "do_not_contact"
-        ],
-        "b": []
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "record_id,email,phone,name,company,do_not_contact\r\nC1,ada@example.com,+39021234567,Ada,Studio A,false\r\nC2,ADA@example.com,+39021234567,Ada,Studio A,true\r\nC3,leo@example.com,+39021234567,Leo,Studio B,false\r\nC4,mia@example.com,02345,Mia,Studio C,\r\n"
-      },
-      "limits": [
-        "Nessuna fusione o cancellazione nel CRM",
-        "Una chiave condivisa non prova identità",
-        "Consenso marketing mai dedotto dal rapporto"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/crm-cleanroom.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Review duplicate contact candidates and identity conflicts.",
+        "Exact normalized primary email/E.164 matches only. No automatic merge or consent inference."
+      ],
+      "it": [
+        "Rivedi candidati duplicati e conflitti d’identità nei contatti.",
+        "Solo email primaria normalizzata e telefono E.164. Nessuna fusione automatica o consenso dedotto."
+      ],
+      "fr": [
+        "Examinez les doublons potentiels et conflits d’identité des contacts.",
+        "Correspondance exacte après normalisation du courriel principal/E.164. Aucune fusion ni déduction de consentement."
+      ],
+      "zh": [
+        "检查重复联系人候选及身份冲突。",
+        "仅匹配规范化的主要邮箱和 E.164 电话。不自动合并，也不推断联系许可。"
+      ],
+      "es": [
+        "Revisa posibles contactos duplicados y conflictos de identidad.",
+        "Coincidencia exacta de correo principal normalizado/E.164. Sin fusiones automáticas ni consentimiento inferido."
       ]
     }
   },
   {
     "id": "webhook-ledger",
     "name": "Webhook Ledger",
-    "sector": "Integration incident review",
-    "value": "Audit exported event logs for repeated identities, conflicting payloads, ordering anomalies and sensitive field names.",
-    "limit": "Offline review only. No receiving, sending, replaying or proof of receiver-side idempotency.",
-    "tool": "webhook_ledger",
-    "input": {
-      "a": "event_id,event_type,entity_id,occurred_at,payload\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":10,\"\"token\"\":\"\"demo\"\"}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"token\"\":\"\"demo\"\",\"\"amount\"\":10}\"\r\nE2,order.updated,O1,2026-10-09T09:00:00Z,\"{\"\"amount\"\":9}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":12}\"\r\n",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "webhook-ledger",
-      "requiredTables": {
-        "a": [
-          "event_id",
-          "event_type",
-          "entity_id",
-          "occurred_at",
-          "payload"
-        ],
-        "b": []
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "event_id,event_type,entity_id,occurred_at,payload\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":10,\"\"token\"\":\"\"demo\"\"}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"token\"\":\"\"demo\"\",\"\"amount\"\":10}\"\r\nE2,order.updated,O1,2026-10-09T09:00:00Z,\"{\"\"amount\"\":9}\"\r\nE1,order.updated,O1,2026-10-09T10:00:00Z,\"{\"\"amount\"\":12}\"\r\n"
-      },
-      "limits": [
-        "Analisi offline, nessun evento inviato o ripetuto",
-        "Non prova idempotenza del ricevitore",
-        "Il piano è da revisionare con le ricevute reali"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/webhook-ledger.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Distinguish repeated events, ID collisions and ordering anomalies.",
+        "Offline log audit only. Payload values are omitted; no event is replayed."
+      ],
+      "it": [
+        "Distingui eventi ripetuti, collisioni degli ID e anomalie d’ordine.",
+        "Solo controllo offline dei log. Valori dei payload omessi; nessun evento reinviato."
+      ],
+      "fr": [
+        "Distinguez événements répétés, collisions d’identifiants et anomalies d’ordre.",
+        "Audit hors ligne des journaux. Valeurs des charges utiles omises ; aucun événement rejoué."
+      ],
+      "zh": [
+        "区分重复事件、标识冲突和顺序异常。",
+        "仅离线检查日志。报告不含载荷值，不会重放事件。"
+      ],
+      "es": [
+        "Distingue eventos repetidos, colisiones de identificadores y anomalías de orden.",
+        "Solo auditoría de registros sin conexión. Se omiten los valores del contenido; no se reenvían eventos."
       ]
     }
   },
   {
     "id": "locale-shield",
     "name": "Locale Shield",
-    "sector": "Translation releases",
-    "value": "Compare JSON dictionaries for missing/empty strings, simple placeholder and tag differences, and review signals.",
-    "limit": "Not translation quality review. Complex ICU messages need a specialist parser; no source-code unused-key analysis.",
-    "tool": "locale_shield",
-    "input": {
-      "a": "{\"checkout\": {\"total\": \"Total: {{amount}}\", \"pay\": \"Pay now\", \"help\": \"Read <b>carefully</b>\"}, \"welcome\": \"Welcome, {name}\"}",
-      "b": "{\"checkout\": {\"total\": \"Totale: {{importo}}\", \"pay\": \"Pay now\", \"help\": \"Leggi attentamente\"}, \"unused\": \"Vecchio testo\"}",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "locale-shield",
-      "requiredTables": {
-        "a": [],
-        "b": []
-      },
-      "inputFormat": "json",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "{\"checkout\": {\"total\": \"Total: {{amount}}\", \"pay\": \"Pay now\", \"help\": \"Read <b>carefully</b>\"}, \"welcome\": \"Welcome, {name}\"}",
-        "b": "{\"checkout\": {\"total\": \"Totale: {{importo}}\", \"pay\": \"Pay now\", \"help\": \"Leggi attentamente\"}, \"unused\": \"Vecchio testo\"}"
-      },
-      "limits": [
-        "Non valuta significato o qualità linguistica",
-        "ICU complesso richiede controlli specialistici",
-        "Non verifica il rendering nell’app"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/locale-shield.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Check translation keys, simple placeholders and structural differences.",
+        "No translation-quality judgment. Complex ICU patterns need separate review."
+      ],
+      "it": [
+        "Controlla chiavi, segnaposto semplici e differenze strutturali delle traduzioni.",
+        "Non valuta la qualità linguistica. I costrutti ICU complessi richiedono revisione separata."
+      ],
+      "fr": [
+        "Vérifiez clés, paramètres simples et différences structurelles des traductions.",
+        "N’évalue pas la qualité linguistique. Les constructions ICU complexes nécessitent un examen séparé."
+      ],
+      "zh": [
+        "检查翻译键、简单占位符和结构差异。",
+        "不判断翻译质量。复杂 ICU 结构需另行检查。"
+      ],
+      "es": [
+        "Comprueba claves, marcadores simples y diferencias estructurales de traducciones.",
+        "No evalúa calidad lingüística. Las estructuras ICU complejas requieren revisión aparte."
       ]
     }
   },
   {
     "id": "bom-delta",
     "name": "BOM Delta",
-    "sector": "Engineering procurement",
-    "value": "Compare two flat BOM revisions, separating quantity/cost changes from part, unit and currency conflicts.",
-    "limit": "No nested BOM explosion, component equivalence or manufacturing approval.",
-    "tool": "bom_delta",
-    "input": {
-      "a": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,10,pcs,MFR-10K,A,0.10,EUR\r\nC1,2,pcs,MFR-C10,A,0.50,EUR\r\nWIRE,2,m,W-1,A,2.00,EUR\r\n",
-      "b": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,12,pcs,MFR-10K,B,0.12,EUR\r\nC1,2,pcs,MFR-C22,B,0.70,EUR\r\nWIRE,200,cm,W-1,A,0.02,EUR\r\n",
-      "asOf": "2026-10-09T12:00:00Z"
-    },
-    "schema": {
-      "product": "bom-delta",
-      "requiredTables": {
-        "a": [
-          "part_id",
-          "quantity",
-          "unit",
-          "manufacturer_part",
-          "revision",
-          "unit_cost",
-          "currency"
-        ],
-        "b": [
-          "part_id",
-          "quantity",
-          "unit",
-          "manufacturer_part",
-          "revision",
-          "unit_cost",
-          "currency"
-        ]
-      },
-      "inputFormat": "csv",
-      "maximumRows": 5000,
-      "maximumBytesPerFile": 2097152,
-      "sample": {
-        "a": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,10,pcs,MFR-10K,A,0.10,EUR\r\nC1,2,pcs,MFR-C10,A,0.50,EUR\r\nWIRE,2,m,W-1,A,2.00,EUR\r\n",
-        "b": "part_id,quantity,unit,manufacturer_part,revision,unit_cost,currency\r\nR10,12,pcs,MFR-10K,B,0.12,EUR\r\nC1,2,pcs,MFR-C22,B,0.70,EUR\r\nWIRE,200,cm,W-1,A,0.02,EUR\r\n"
-      },
-      "limits": [
-        "Distinta piatta, senza esplosione multilivello",
-        "Nessuna equivalenza tecnica o sicurezza certificata",
-        "Assenza nel file non equivale a rimozione approvata"
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/bom-delta.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Compare flat BOM quantities, parts, revisions and costs.",
+        "No nested assembly expansion or engineering substitution approval."
+      ],
+      "it": [
+        "Confronta quantità, componenti, revisioni e costi di distinte piatte.",
+        "Nessuna esplosione di assiemi annidati o approvazione di equivalenze tecniche."
+      ],
+      "fr": [
+        "Comparez quantités, composants, révisions et coûts de nomenclatures plates.",
+        "Pas de décomposition d’assemblages imbriqués ni validation de substitutions techniques."
+      ],
+      "zh": [
+        "比较平面物料清单的数量、零件、版本和成本。",
+        "不展开嵌套装配，也不批准工程替代件。"
+      ],
+      "es": [
+        "Compara cantidades, piezas, revisiones y costes de listas planas de materiales.",
+        "Sin expansión de conjuntos anidados ni aprobación de sustituciones técnicas."
+      ]
+    }
+  },
+  {
+    "id": "feed-gate",
+    "name": "Feed Gate",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/feed-gate.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Preflight product-feed fields before uploading.",
+        "Selected generic rules only. No live URL checks, category eligibility or platform approval."
+      ],
+      "it": [
+        "Controlla i campi del feed prodotti prima del caricamento.",
+        "Solo regole generiche selezionate. Nessuna verifica live degli URL o approvazione della piattaforma."
+      ],
+      "fr": [
+        "Contrôlez les champs du flux produit avant importation.",
+        "Règles génériques sélectionnées seulement. Pas de contrôle des URL en direct ni d’approbation de plateforme."
+      ],
+      "zh": [
+        "上传前检查商品数据源字段。",
+        "仅执行选定的通用规则。不实时访问网址，也不保证平台批准。"
+      ],
+      "es": [
+        "Comprueba campos del feed de productos antes de subirlo.",
+        "Solo reglas genéricas seleccionadas. Sin comprobación de URL en directo ni aprobación de la plataforma."
+      ]
+    }
+  },
+  {
+    "id": "invoice-match",
+    "name": "Invoice Match",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/invoice-match.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Find quantity and unit-price differences between orders and invoices.",
+        "Exact order/SKU two-way match. Consolidate split invoices first; no tax or payment verification."
+      ],
+      "it": [
+        "Trova differenze di quantità e prezzo tra ordini e fatture.",
+        "Corrispondenza esatta ordine/SKU. Consolida prima le fatture parziali; nessuna verifica fiscale o dei pagamenti."
+      ],
+      "fr": [
+        "Repérez les écarts de quantité et prix entre commandes et factures.",
+        "Rapprochement exact commande/SKU. Consolidez les factures fractionnées ; aucune vérification fiscale ou de paiement."
+      ],
+      "zh": [
+        "查找订单和发票之间的数量及单价差异。",
+        "精确匹配订单/SKU。需先合并拆分发票；不核验税务或付款。"
+      ],
+      "es": [
+        "Detecta diferencias de cantidad y precio entre pedidos y facturas.",
+        "Coincidencia exacta pedido/SKU. Consolida facturas parciales; sin validación fiscal ni de pagos."
+      ]
+    }
+  },
+  {
+    "id": "evidence-map",
+    "name": "Evidence Map",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/evidence-map.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Expose unsupported, stale or contradicted claims.",
+        "Uses your evidence labels and distinct URLs. Does not read sources or establish truth or independence."
+      ],
+      "it": [
+        "Evidenzia affermazioni non supportate, obsolete o contraddette.",
+        "Usa le tue etichette e URL distinti. Non legge le fonti né ne dimostra verità o indipendenza."
+      ],
+      "fr": [
+        "Repérez les affirmations insuffisamment étayées, anciennes ou contredites.",
+        "Utilise vos étiquettes et URL distinctes. Ne lit pas les sources et ne prouve ni vérité ni indépendance."
+      ],
+      "zh": [
+        "标记证据不足、过时或被反驳的主张。",
+        "使用用户提供的证据标签和不同网址。不读取来源，也不证明真实性或独立性。"
+      ],
+      "es": [
+        "Detecta afirmaciones sin respaldo, desactualizadas o contradichas.",
+        "Usa tus etiquetas y URL distintas. No lee fuentes ni demuestra verdad o independencia."
+      ]
+    }
+  },
+  {
+    "id": "tender-ready",
+    "name": "Tender Ready",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/tender-ready.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Check submission requirements, owners, deadlines and evidence references.",
+        "Checklist coverage, not legal eligibility or probability of winning. No submission is sent."
+      ],
+      "it": [
+        "Controlla requisiti, responsabili, scadenze e riferimenti delle prove per una gara.",
+        "Copertura della checklist, non ammissibilità legale o probabilità di vincere. Nessun invio."
+      ],
+      "fr": [
+        "Vérifiez exigences, responsables, délais et références pour une candidature.",
+        "Couverture de checklist, pas admissibilité juridique ni probabilité de succès. Aucun dépôt effectué."
+      ],
+      "zh": [
+        "检查投标要求、负责人、截止时间和证据引用。",
+        "仅检查清单覆盖情况，不判断法律资格或中标概率。不会提交投标。"
+      ],
+      "es": [
+        "Revisa requisitos, responsables, plazos y pruebas de una licitación.",
+        "Cobertura de una lista, no elegibilidad jurídica ni probabilidad de ganar. No se envía ninguna propuesta."
+      ]
+    }
+  },
+  {
+    "id": "change-proof",
+    "name": "Change Proof",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/change-proof.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Compare website snapshot hashes and HTTP status records.",
+        "No crawler or visual comparison. A hash change does not establish a defect."
+      ],
+      "it": [
+        "Confronta hash e stati HTTP di snapshot di siti.",
+        "Nessun crawler o confronto visivo. Un hash cambiato non dimostra un difetto."
+      ],
+      "fr": [
+        "Comparez empreintes et codes HTTP de captures de sites.",
+        "Aucun robot ni comparaison visuelle. Une empreinte modifiée ne prouve pas un défaut."
+      ],
+      "zh": [
+        "比较网站快照哈希和 HTTP 状态记录。",
+        "不抓取网站或比较视觉效果。哈希变化不能证明存在缺陷。"
+      ],
+      "es": [
+        "Compara hashes y estados HTTP de instantáneas web.",
+        "Sin rastreo ni comparación visual. Un cambio de hash no demuestra un fallo."
+      ]
+    }
+  },
+  {
+    "id": "restore-proof",
+    "name": "Restore Proof",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/restore-proof.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Review backup age, restore-test evidence and recovery targets.",
+        "Checks supplied metadata only. Does not back up, restore or prove disaster readiness."
+      ],
+      "it": [
+        "Rivedi età dei backup, prove di ripristino e obiettivi di recupero.",
+        "Solo metadati forniti. Non esegue backup o ripristini e non prova la resilienza ai disastri."
+      ],
+      "fr": [
+        "Examinez l’âge des sauvegardes, les tests de restauration et les objectifs.",
+        "Métadonnées fournies uniquement. Ne sauvegarde, ne restaure ni ne prouve la résilience."
+      ],
+      "zh": [
+        "检查备份时效、恢复测试证据及恢复目标。",
+        "仅检查所提供的元数据。不执行备份或恢复，也不证明灾难恢复能力。"
+      ],
+      "es": [
+        "Revisa antigüedad de copias, pruebas de restauración y objetivos de recuperación.",
+        "Solo metadatos proporcionados. No realiza copias ni restauraciones ni prueba preparación ante desastres."
+      ]
+    }
+  },
+  {
+    "id": "margin-scenario",
+    "name": "Margin Scenario",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/margin-scenario.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Calculate margin scenarios and break-even quantities.",
+        "Demand and costs are assumptions; no forecast, tax or accounting advice. Aggregate fee rounding may differ from providers."
+      ],
+      "it": [
+        "Calcola scenari di margine e quantità di pareggio.",
+        "Domanda e costi sono ipotesi; nessuna previsione o consulenza fiscale/contabile. Arrotondamento aggregato delle commissioni."
+      ],
+      "fr": [
+        "Calculez scénarios de marge et volumes d’équilibre.",
+        "Demande et coûts sont des hypothèses ; pas de prévision ni conseil fiscal/comptable. Frais arrondis globalement."
+      ],
+      "zh": [
+        "计算利润情景和盈亏平衡数量。",
+        "需求及成本均为假设；不提供预测、税务或会计建议。手续费按总额取整，可能与平台不同。"
+      ],
+      "es": [
+        "Calcula escenarios de margen y cantidades de equilibrio.",
+        "Demanda y costes son supuestos; sin previsión ni asesoría fiscal/contable. Comisiones redondeadas sobre el total."
+      ]
+    }
+  },
+  {
+    "id": "client-intake",
+    "name": "Client Intake",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/client-intake.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Find missing intake answers, owners and prerequisites.",
+        "Presence and dependency checks only. Answers are not judged or included in reports; no client is contacted."
+      ],
+      "it": [
+        "Trova risposte, responsabili e prerequisiti mancanti nell’avvio cliente.",
+        "Solo presenza e dipendenze. Le risposte non sono valutate né incluse nei rapporti; nessun cliente contattato."
+      ],
+      "fr": [
+        "Repérez réponses, responsables et prérequis manquants à l’accueil client.",
+        "Présence et dépendances uniquement. Réponses non évaluées ni incluses dans les rapports ; aucun contact client."
+      ],
+      "zh": [
+        "发现客户入门资料中缺失的答案、负责人和前置条件。",
+        "仅检查是否存在及依赖关系。不判断答案，也不将答案值写入报告；不会联系客户。"
+      ],
+      "es": [
+        "Detecta respuestas, responsables y requisitos previos faltantes en la incorporación.",
+        "Solo presencia y dependencias. No evalúa ni incluye respuestas en informes; no contacta clientes."
+      ]
+    }
+  },
+  {
+    "id": "renewal-watch",
+    "name": "Renewal Watch",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/renewal-watch.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Review contract renewal and notice windows before decisions are late.",
+        "Elapsed calendar days, not business days or legal interpretation. No cancellation, renewal or reminder is sent."
+      ],
+      "it": [
+        "Rivedi finestre di rinnovo e preavviso prima che sia tardi.",
+        "Giorni di calendario trascorsi, non lavorativi o interpretazione legale. Nessuna disdetta, rinnovo o notifica."
+      ],
+      "fr": [
+        "Examinez les échéances de renouvellement et préavis avant retard.",
+        "Jours calendaires écoulés, pas jours ouvrés ni interprétation juridique. Aucun renouvellement, résiliation ou rappel."
+      ],
+      "zh": [
+        "在决策逾期前检查合同续约及通知期限。",
+        "按实际日历天数计算，不按工作日，也不解释法律条款。不取消、续约或发送提醒。"
+      ],
+      "es": [
+        "Revisa renovaciones y plazos de preaviso antes de decidir tarde.",
+        "Días naturales transcurridos, no laborables ni interpretación jurídica. No cancela, renueva ni envía avisos."
+      ]
+    }
+  },
+  {
+    "id": "access-review",
+    "name": "Access Review",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/access-review.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Review leaver, inactive and privileged accounts against a staff roster.",
+        "No live access scan, revocation or compliance certification. Confirm legitimate access needs."
+      ],
+      "it": [
+        "Rivedi account di ex dipendenti, inattivi e privilegiati rispetto al personale.",
+        "Nessuna scansione live, revoca o certificazione. Conferma le esigenze legittime di accesso."
+      ],
+      "fr": [
+        "Examinez comptes de départs, inactifs et privilégiés selon le registre du personnel.",
+        "Aucun scan direct, retrait d’accès ou certification. Confirmez les besoins légitimes."
+      ],
+      "zh": [
+        "根据员工名册检查离职、闲置及特权账户。",
+        "不实时扫描权限、不撤销访问，也不提供合规认证。请确认合理访问需求。"
+      ],
+      "es": [
+        "Revisa cuentas de bajas, inactivas y privilegiadas frente a la plantilla.",
+        "Sin análisis en directo, revocación ni certificación. Confirma las necesidades legítimas de acceso."
+      ]
+    }
+  },
+  {
+    "id": "handover-check",
+    "name": "Handover Check",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/handover-check.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Close handover gaps in ownership, acceptance, evidence and next actions.",
+        "Uses recorded acceptance only; does not obtain consent or transfer responsibility automatically."
+      ],
+      "it": [
+        "Individua vuoti nei passaggi di consegne: responsabilità, accettazione, prove e azioni.",
+        "Usa l’accettazione registrata; non ottiene consenso né trasferisce responsabilità automaticamente."
+      ],
+      "fr": [
+        "Repérez les lacunes de passation : responsabilité, acceptation, preuves et actions.",
+        "Utilise l’acceptation enregistrée ; n’obtient pas de consentement ni ne transfère la responsabilité."
+      ],
+      "zh": [
+        "发现交接中的负责人、接收确认、证据及下一步缺口。",
+        "仅使用记录中的接收状态；不获取同意，也不自动转移责任。"
+      ],
+      "es": [
+        "Detecta lagunas en traspasos: responsabilidad, aceptación, pruebas y acciones.",
+        "Usa la aceptación registrada; no obtiene consentimiento ni transfiere responsabilidades automáticamente."
+      ]
+    }
+  },
+  {
+    "id": "meeting-followthrough",
+    "name": "Meeting Follow-through",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/meeting-followthrough.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Track meeting actions that lack owners, proof or timely completion.",
+        "Structured action register, not transcription. Exact text duplicates only; no messages sent."
+      ],
+      "it": [
+        "Controlla azioni delle riunioni senza responsabile, prove o completamento tempestivo.",
+        "Registro strutturato, non trascrizione. Solo duplicati testuali esatti; nessun messaggio inviato."
+      ],
+      "fr": [
+        "Suivez les actions de réunion sans responsable, preuve ou achèvement à temps.",
+        "Registre structuré, pas transcription. Doublons textuels exacts seulement ; aucun message envoyé."
+      ],
+      "zh": [
+        "跟踪缺少负责人、证据或及时完成记录的会议行动项。",
+        "使用结构化行动表，不转录会议。仅识别规范化文本完全相同的重复项；不发送消息。"
+      ],
+      "es": [
+        "Controla acciones de reuniones sin responsable, pruebas o finalización puntual.",
+        "Registro estructurado, no transcripción. Solo duplicados de texto exacto; no envía mensajes."
+      ]
+    }
+  },
+  {
+    "id": "release-readiness",
+    "name": "Release Readiness",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/release-readiness.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Check that required test receipts belong to the exact release artifact.",
+        "Receipt metadata only. Does not execute tests, verify signatures, certify security or deploy."
+      ],
+      "it": [
+        "Controlla che le ricevute dei test richiesti riguardino l’esatto artefatto da rilasciare.",
+        "Solo metadati delle ricevute. Non esegue test, verifica firme, certifica sicurezza o distribuisce."
+      ],
+      "fr": [
+        "Vérifiez que les preuves de tests concernent l’artefact exact à livrer.",
+        "Métadonnées uniquement. Aucun test exécuté, signature vérifiée, sécurité certifiée ou déploiement."
+      ],
+      "zh": [
+        "确认所需测试记录对应准确的发布构件。",
+        "仅检查测试记录元数据。不运行测试、验证签名、认证安全或部署。"
+      ],
+      "es": [
+        "Comprueba que las pruebas de test corresponden al artefacto exacto de la versión.",
+        "Solo metadatos. No ejecuta pruebas, verifica firmas, certifica seguridad ni despliega."
+      ]
+    }
+  },
+  {
+    "id": "service-review",
+    "name": "Service Review",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/service-review.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Compare supplied event counts with service targets and error budgets.",
+        "Event-count SLOs only, not time-weighted availability or contractual SLA judgments. Missing coverage is not detectable."
+      ],
+      "it": [
+        "Confronta eventi osservati con obiettivi di servizio e budget d’errore.",
+        "Solo SLO su conteggi, non disponibilità temporale o giudizi contrattuali. Copertura mancante non rilevabile."
+      ],
+      "fr": [
+        "Comparez les événements fournis aux objectifs de service et budgets d’erreur.",
+        "SLO par comptage uniquement, pas disponibilité temporelle ni jugement contractuel. Couverture manquante indétectable."
+      ],
+      "zh": [
+        "将所提供的事件数量与服务目标和错误预算比较。",
+        "仅按事件计数计算 SLO，不计算时间加权可用性或判断合同 SLA。无法发现未提供的观测。"
+      ],
+      "es": [
+        "Compara eventos proporcionados con objetivos de servicio y presupuestos de error.",
+        "Solo SLO por conteo, no disponibilidad temporal ni evaluación contractual. No detecta cobertura ausente."
+      ]
+    }
+  },
+  {
+    "id": "document-control",
+    "name": "Document Control",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/document-control.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Find outdated document acknowledgements and overdue reviews.",
+        "Metadata only. No proof of reading, comprehension, signature validity or full audience coverage."
+      ],
+      "it": [
+        "Trova prese visioni di versioni obsolete e revisioni scadute.",
+        "Solo metadati. Non prova lettura, comprensione, validità delle firme o copertura di tutti i destinatari."
+      ],
+      "fr": [
+        "Repérez accusés de lecture obsolètes et révisions en retard.",
+        "Métadonnées seulement. Ne prouve ni lecture, compréhension, validité des signatures ni couverture complète."
+      ],
+      "zh": [
+        "发现旧版文档确认记录及逾期审查。",
+        "仅检查元数据。不证明实际阅读、理解、签名有效性或所有读者均已覆盖。"
+      ],
+      "es": [
+        "Detecta acuses de versiones obsoletas y revisiones vencidas.",
+        "Solo metadatos. No prueba lectura, comprensión, firmas válidas ni cobertura completa del público."
+      ]
+    }
+  },
+  {
+    "id": "experiment-verdict",
+    "name": "Experiment Verdict",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/experiment-verdict.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Show conversion uncertainty before declaring an experiment winner.",
+        "Wilson 95% intervals assume independent binary observations. Not a causal proof, formal comparison test or stopping rule; supplied revenue unverified."
+      ],
+      "it": [
+        "Mostra l’incertezza delle conversioni prima di dichiarare un vincitore.",
+        "Intervalli Wilson 95% con osservazioni binarie indipendenti. Non prova causale, test formale di confronto o regola di arresto; ricavi non verificati."
+      ],
+      "fr": [
+        "Affichez l’incertitude des conversions avant de désigner un gagnant.",
+        "Intervalles Wilson 95 % : observations binaires indépendantes. Pas de preuve causale, test comparatif formel ou règle d’arrêt ; revenus non vérifiés."
+      ],
+      "zh": [
+        "在宣布实验胜者前显示转化率的不确定性。",
+        "Wilson 95% 区间假设独立二元观测。不是因果证明、正式比较检验或停止规则；收入未核验。"
+      ],
+      "es": [
+        "Muestra la incertidumbre de conversión antes de declarar un ganador.",
+        "Intervalos Wilson al 95 % con observaciones binarias independientes. No es prueba causal, test comparativo formal ni regla de parada; ingresos no verificados."
+      ]
+    }
+  },
+  {
+    "id": "capacity-week",
+    "name": "Capacity Week",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/capacity-week.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Allocate proposed work against owner capacity and explicit priorities.",
+        "Greedy allocation only. No calendar, dependency or skill optimization; no tasks are assigned externally."
+      ],
+      "it": [
+        "Distribuisci il lavoro proposto rispetto a capacità e priorità esplicite.",
+        "Allocazione sequenziale per priorità. Nessuna ottimizzazione di calendario, dipendenze o competenze; nessuna assegnazione esterna."
+      ],
+      "fr": [
+        "Répartissez le travail proposé selon capacité et priorités explicites.",
+        "Allocation gloutonne seulement. Pas d’optimisation calendrier, dépendances ou compétences ; aucune attribution externe."
+      ],
+      "zh": [
+        "按负责人容量和明确优先级分配拟议工作。",
+        "仅使用贪心分配。不优化日历、依赖或技能，也不在外部系统分配任务。"
+      ],
+      "es": [
+        "Distribuye trabajo propuesto según capacidad y prioridades explícitas.",
+        "Asignación voraz. Sin optimización de calendario, dependencias o habilidades; no asigna tareas externas."
+      ]
+    }
+  },
+  {
+    "id": "supplier-price-list-audit",
+    "name": "Supplier Price List Audit",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/supplier-price-list-audit.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Compare normalized supplier prices without hiding unit or pack changes.",
+        "Exact SKU comparison only. No PDF extraction, currency conversion or negotiation. Local edition distinct from the existing cloud build."
+      ],
+      "it": [
+        "Confronta listini normalizzati senza nascondere cambi di unità o confezione.",
+        "Solo SKU esatti. Nessuna estrazione PDF, cambio valuta o negoziazione. Edizione locale distinta dalla build cloud esistente."
+      ],
+      "fr": [
+        "Comparez les prix fournisseurs normalisés sans masquer changements d’unité ou lot.",
+        "SKU exacts seulement. Pas d’extraction PDF, conversion ou négociation. Édition locale distincte de la version cloud existante."
+      ],
+      "zh": [
+        "比较规范化供应商价格，同时明确单位或包装变化。",
+        "仅按准确 SKU 比较。不提取 PDF、不换汇或谈判。本地版与现有云端构建不同。"
+      ],
+      "es": [
+        "Compara precios normalizados sin ocultar cambios de unidad o lote.",
+        "Solo SKU exactos. Sin extracción PDF, conversión ni negociación. Edición local distinta de la versión en la nube."
+      ]
+    }
+  },
+  {
+    "id": "menu-board",
+    "name": "Menu Board",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "zh",
+      "es"
+    ],
+    "oneSkuAcrossLanguages": true,
+    "localVersion": "2.0.1",
+    "productPage": "products/menu-board.md",
+    "checkoutVerified": false,
+    "publicEngine": false,
+    "localizedCopy": {
+      "en": [
+        "Create a portable five-language menu from reviewed item names and prices.",
+        "You supply translations. No orders, hosting, allergen inference or regulatory certification. Review all content before publishing."
+      ],
+      "it": [
+        "Crea un menu portabile in cinque lingue con nomi e prezzi revisionati.",
+        "Le traduzioni le fornisci tu. Nessun ordine, hosting, deduzione di allergeni o certificazione normativa. Rivedi tutto prima di pubblicare."
+      ],
+      "fr": [
+        "Créez un menu portable en cinq langues avec noms et prix vérifiés.",
+        "Vous fournissez les traductions. Ni commandes, hébergement, déduction d’allergènes ni certification. Relisez avant publication."
+      ],
+      "zh": [
+        "使用审核过的菜品名称和价格生成便携的五语言菜单。",
+        "翻译由用户提供。不处理订单、托管、推断过敏原或认证法规要求。发布前请审核全部内容。"
+      ],
+      "es": [
+        "Crea un menú portátil en cinco idiomas con nombres y precios revisados.",
+        "Tú proporcionas traducciones. Sin pedidos, alojamiento, inferencia de alérgenos ni certificación. Revisa antes de publicar."
       ]
     }
   }
