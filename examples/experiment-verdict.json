@@ -1,0 +1,52 @@
+{
+  "a": "variant,visitors,conversions,revenue,currency\r\nA,100,5,100,EUR\r\nB,100,6,120,EUR\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "experiment-verdict",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "interpretation": "inconclusive",
+      "findings": 1
+    },
+    "rows": [
+      {
+        "variant": "A",
+        "visitors": 100,
+        "conversions": 5,
+        "conversion_rate": 0.05,
+        "lower_95": 0.02154336145631356,
+        "upper_95": 0.11175196527208817,
+        "supplied_revenue": 100,
+        "currency": "EUR"
+      },
+      {
+        "variant": "B",
+        "visitors": 100,
+        "conversions": 6,
+        "conversion_rate": 0.06,
+        "lower_95": 0.02778574526665662,
+        "upper_95": 0.12476968531222507,
+        "supplied_revenue": 120,
+        "currency": "EUR"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "INCONCLUSIVE",
+        "id": "experiment",
+        "message": "Observed conversion intervals require design review.",
+        "action": "Confirm independent randomized visitors, complete tracking and a predeclared analysis before acting."
+      }
+    ],
+    "limitations": [
+      "Wilson 95% intervals for independent binary observations; comparison is a conservative signal, not a formal significance test, causal proof or stopping rule. Revenue is supplied and not verified against payout."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
