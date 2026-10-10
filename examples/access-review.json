@@ -1,0 +1,58 @@
+{
+  "a": "account_id,person_id,role,last_seen,account_status\r\nA1,P1,admin,2026-10-01T12:00:00Z,enabled\r\nA2,P2,reader,2026-10-01T12:00:00Z,enabled\r\n",
+  "b": "person_id,employment_status\r\nP1,active\r\nP2,left\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {
+    "inactiveDays": 90
+  },
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "access-review",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "accounts": 2,
+      "findings": 2
+    },
+    "rows": [
+      {
+        "account_id": "A1",
+        "person_id": "P1",
+        "role": "admin",
+        "inactive_days": 8,
+        "issues": "PRIVILEGED_REVIEW",
+        "status": "review"
+      },
+      {
+        "account_id": "A2",
+        "person_id": "P2",
+        "role": "reader",
+        "inactive_days": 8,
+        "issues": "LEAVER_ACCESS",
+        "status": "review"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "PRIVILEGED_REVIEW",
+        "id": "A1",
+        "message": "Account needs an access review.",
+        "action": "Verify business need before changing permissions."
+      },
+      {
+        "severity": "error",
+        "code": "LEAVER_ACCESS",
+        "id": "A2",
+        "message": "Account needs an access review.",
+        "action": "Verify business need before changing permissions."
+      }
+    ],
+    "limitations": [
+      "Review of supplied account/roster snapshots only. Does not scan systems, determine actual effective permissions, revoke access or certify compliance."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
