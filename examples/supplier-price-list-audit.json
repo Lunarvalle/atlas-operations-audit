@@ -1,0 +1,60 @@
+{
+  "a": "sku,unit,pack_size,unit_price,currency\r\nA,piece,1,10.00,EUR\r\nB,box,10,20.00,EUR\r\n",
+  "b": "sku,unit,pack_size,unit_price,currency\r\nA,piece,1,11.00,EUR\r\nB,box,20,20.00,EUR\r\nC,piece,1,5.00,EUR\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "supplier-price-list-audit",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "items": 3,
+      "findings": 1
+    },
+    "rows": [
+      {
+        "sku": "A",
+        "status": "price_changed",
+        "previous_price": 10,
+        "new_price": 11,
+        "currency": "EUR",
+        "price_delta": 1,
+        "delta_percent": 10
+      },
+      {
+        "sku": "B",
+        "status": "incomparable",
+        "previous_price": 20,
+        "new_price": 20,
+        "currency": "EUR",
+        "price_delta": null,
+        "delta_percent": null
+      },
+      {
+        "sku": "C",
+        "status": "added",
+        "previous_price": null,
+        "new_price": 5,
+        "currency": "EUR",
+        "price_delta": null,
+        "delta_percent": null
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "BASIS_CHANGED",
+        "id": "B",
+        "message": "Price unit, pack or currency changed.",
+        "action": "Normalize the commercial basis before comparing."
+      }
+    ],
+    "limitations": [
+      "Local exact-SKU comparison of normalized lists; no PDF extraction, currency conversion or supplier negotiation. This local edition is separately tested and does not replace the existing Apify Actor build."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
