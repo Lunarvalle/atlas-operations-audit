@@ -1,0 +1,77 @@
+{
+  "a": "owner,available_hours\r\nMarco,10\r\nAlice,5\r\n",
+  "b": "task_id,owner,hours,priority,due_at\r\nT1,Marco,8,1,2026-10-20T12:00:00Z\r\nT2,Marco,5,2,2026-10-20T12:00:00Z\r\nT3,Unknown,1,1,2026-10-01T12:00:00Z\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "capacity-week",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "assigned_hours": {
+        "Marco": 8,
+        "Alice": 0
+      },
+      "findings": 3
+    },
+    "rows": [
+      {
+        "task_id": "T3",
+        "owner": "Unknown",
+        "hours": 1,
+        "priority": 1,
+        "due_at": "2026-10-01T12:00:00Z",
+        "status": "owner_unknown",
+        "remaining_hours": null
+      },
+      {
+        "task_id": "T1",
+        "owner": "Marco",
+        "hours": 8,
+        "priority": 1,
+        "due_at": "2026-10-20T12:00:00Z",
+        "status": "fits_capacity",
+        "remaining_hours": 2
+      },
+      {
+        "task_id": "T2",
+        "owner": "Marco",
+        "hours": 5,
+        "priority": 2,
+        "due_at": "2026-10-20T12:00:00Z",
+        "status": "over_capacity",
+        "remaining_hours": 2
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "OWNER_UNKNOWN",
+        "id": "T3",
+        "message": "Task does not fit the supplied capacity allocation.",
+        "action": "Reassign, rescope or negotiate the commitment."
+      },
+      {
+        "severity": "warning",
+        "code": "OVERDUE",
+        "id": "T3",
+        "message": "Task due date is past.",
+        "action": "Confirm current task status."
+      },
+      {
+        "severity": "warning",
+        "code": "OVER_CAPACITY",
+        "id": "T2",
+        "message": "Task does not fit the supplied capacity allocation.",
+        "action": "Reassign, rescope or negotiate the commitment."
+      }
+    ],
+    "limitations": [
+      "Greedy priority allocation to supplied owner capacity; no calendar, dependencies, skill matching or optimization guarantee. Does not schedule or notify anyone."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
