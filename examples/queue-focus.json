@@ -1,0 +1,79 @@
+{
+  "asOf": "2026-10-09T12:00:00Z",
+  "a": "ticket_id,status,priority,created_at,updated_at,due_at,assignee\r\nT1,open,high,2026-10-05T10:00:00Z,2026-10-06T10:00:00Z,2026-10-09T10:00:00Z,\r\nT2,pending,normal,2026-10-08T10:00:00Z,2026-10-09T09:00:00Z,2026-10-09T15:00:00Z,Giulia\r\nT3,solved,high,2026-10-07T10:00:00Z,2026-10-08T10:00:00Z,2026-10-09T10:00:00Z,Marco\r\n",
+  "options": {
+    "staleHours": 48
+  },
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "queue-focus",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "active_tickets": 2,
+      "overdue": 1,
+      "unassigned": 1,
+      "findings": 4
+    },
+    "rows": [
+      {
+        "ticket_id": "T1",
+        "status": "open",
+        "priority": "high",
+        "assignee": "",
+        "hours_to_deadline": -2,
+        "age_hours": 98,
+        "inactive_hours": 74,
+        "state": "overdue"
+      },
+      {
+        "ticket_id": "T2",
+        "status": "pending",
+        "priority": "normal",
+        "assignee": "Giulia",
+        "hours_to_deadline": 3,
+        "age_hours": 26,
+        "inactive_hours": 3,
+        "state": "due_soon"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "OVERDUE",
+        "id": "T1",
+        "message": "Deadline has passed.",
+        "action": "Review ticket and assign next action."
+      },
+      {
+        "severity": "warning",
+        "code": "UNASSIGNED",
+        "id": "T1",
+        "message": "No owner supplied.",
+        "action": "Assign an accountable owner in the helpdesk."
+      },
+      {
+        "severity": "warning",
+        "code": "STALE",
+        "id": "T1",
+        "message": "No update in the selected threshold.",
+        "action": "Check whether waiting is intentional."
+      },
+      {
+        "severity": "warning",
+        "code": "DUE_SOON",
+        "id": "T2",
+        "message": "Deadline is within four hours.",
+        "action": "Review ticket and assign next action."
+      }
+    ],
+    "limitations": [
+      "Uses explicit deadlines from your system. Does not reconstruct business-hour SLA clocks, pauses, holidays or contractual compliance.",
+      "No customer messages or helpdesk changes are sent.",
+      "Snapshot at asOf; refresh after the queue changes."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
