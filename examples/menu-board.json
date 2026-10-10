@@ -1,0 +1,50 @@
+{
+  "a": "item_id,category,price,currency,available,en,it,fr,zh,es\r\nM1,Main,12,EUR,true,Vegetable pasta,Pasta alle verdure,Pâtes aux légumes,蔬菜意面,Pasta con verduras\r\nM2,Drinks,3,EUR,true,Water,Acqua,Eau,水,Agua\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "menu-board",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "complete",
+    "metrics": {
+      "items": 2,
+      "findings": 0
+    },
+    "rows": [
+      {
+        "item_id": "M1",
+        "category": "Main",
+        "price": 12,
+        "currency": "EUR",
+        "available": "true",
+        "en": "Vegetable pasta",
+        "it": "Pasta alle verdure",
+        "fr": "Pâtes aux légumes",
+        "zh": "蔬菜意面",
+        "es": "Pasta con verduras",
+        "issues": ""
+      },
+      {
+        "item_id": "M2",
+        "category": "Drinks",
+        "price": 3,
+        "currency": "EUR",
+        "available": "true",
+        "en": "Water",
+        "it": "Acqua",
+        "fr": "Eau",
+        "zh": "水",
+        "es": "Agua",
+        "issues": ""
+      }
+    ],
+    "findings": [],
+    "limitations": [
+      "Builds a static menu from your five supplied translations. Does not translate text, manage orders, infer allergens, certify regulatory information or host a website. Display only after human content review."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
