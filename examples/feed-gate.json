@@ -1,0 +1,69 @@
+{
+  "a": "id,title,description,link,image_link,price,currency,availability\r\nA,Blue mug,Ceramic mug,https://example.org/a,https://example.org/a.jpg,12.00,EUR,in_stock\r\nB,,Missing title,https://example.org/b,not-a-url,0,EUR,available\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "feed-gate",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "items": 2,
+      "findings": 4
+    },
+    "rows": [
+      {
+        "id": "A",
+        "title": "Blue mug",
+        "issues": "",
+        "ready": true,
+        "price": 12,
+        "currency": "EUR"
+      },
+      {
+        "id": "B",
+        "title": "",
+        "issues": "TITLE_MISSING;IMAGE_LINK_INVALID;PRICE_NONPOSITIVE;AVAILABILITY_INVALID",
+        "ready": false,
+        "price": 0,
+        "currency": "EUR"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "TITLE_MISSING",
+        "id": "B",
+        "message": "Feed field needs correction.",
+        "action": "Correct the supplied row before uploading."
+      },
+      {
+        "severity": "error",
+        "code": "IMAGE_LINK_INVALID",
+        "id": "B",
+        "message": "Feed field needs correction.",
+        "action": "Correct the supplied row before uploading."
+      },
+      {
+        "severity": "error",
+        "code": "PRICE_NONPOSITIVE",
+        "id": "B",
+        "message": "Feed field needs correction.",
+        "action": "Correct the supplied row before uploading."
+      },
+      {
+        "severity": "error",
+        "code": "AVAILABILITY_INVALID",
+        "id": "B",
+        "message": "Feed field needs correction.",
+        "action": "Correct the supplied row before uploading."
+      }
+    ],
+    "limitations": [
+      "Selected generic feed checks only; not certification by any merchant platform. URLs and images are not fetched. Category-specific identifiers, policy eligibility, tax and shipping are not checked."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
