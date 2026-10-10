@@ -1,0 +1,50 @@
+{
+  "a": "contract_id,renewal_at,notice_days,owner,auto_renew\r\nC1,2026-10-20T12:00:00Z,30,Operations,true\r\nC2,2027-01-01T12:00:00Z,30,Finance,false\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {
+    "lookaheadDays": 30
+  },
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "renewal-watch",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "contracts": 2,
+      "findings": 1
+    },
+    "rows": [
+      {
+        "contract_id": "C1",
+        "owner": "Operations",
+        "auto_renew": "true",
+        "notice_cutoff": "2026-09-20T12:00:00.000Z",
+        "days_to_notice": -19,
+        "status": "notice_window_passed"
+      },
+      {
+        "contract_id": "C2",
+        "owner": "Finance",
+        "auto_renew": "false",
+        "notice_cutoff": "2026-12-02T12:00:00.000Z",
+        "days_to_notice": 54,
+        "status": "scheduled"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "NOTICE_WINDOW_PASSED",
+        "id": "C1",
+        "message": "Contract date needs review.",
+        "action": "Confirm the contractual deadline and make an owned decision."
+      }
+    ],
+    "limitations": [
+      "Uses elapsed 24-hour days before explicit timestamps, not business days or interpretation of contractual notice clauses. Does not cancel, renew or send reminders."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
