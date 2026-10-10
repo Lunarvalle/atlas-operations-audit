@@ -1,0 +1,53 @@
+{
+  "a": "transaction_id,payout_id,currency,gross,fee,net\r\nT1,P1,EUR,100.00,3.00,97.00\r\nT2,P1,EUR,-20.00,0.00,-20.00\r\nT3,P2,USD,50.00,2.00,48.00\r\n",
+  "b": "payout_id,currency,amount\r\nP1,EUR,77.00\r\nP2,USD,47.50\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "payout-bridge",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "payout_groups": 2,
+      "exact_matches": 1,
+      "findings": 1
+    },
+    "rows": [
+      {
+        "payout_id": "P1",
+        "currency": "EUR",
+        "transactions": 2,
+        "net_transactions": 77,
+        "expected_payout": 77,
+        "difference": 0,
+        "status": "amount_matched"
+      },
+      {
+        "payout_id": "P2",
+        "currency": "USD",
+        "transactions": 1,
+        "net_transactions": 48,
+        "expected_payout": 47.5,
+        "difference": 0.5,
+        "status": "amount_mismatch"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "AMOUNT_MISMATCH",
+        "id": "P2",
+        "message": "Settlement does not reconcile exactly.",
+        "action": "Review official payout detail and bank record."
+      }
+    ],
+    "limitations": [
+      "Reconciles exact supplied payout IDs and settlement currencies; not revenue recognition or tax accounting.",
+      "Instant/manual payouts without exact transaction assignment require separate reconciliation.",
+      "A matched amount does not prove receipt in a bank account."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
