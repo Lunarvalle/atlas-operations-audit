@@ -1,0 +1,65 @@
+{
+  "a": "system_id,rpo_hours,rto_minutes\r\nCRM,24,60\r\nFiles,12,30\r\n",
+  "b": "system_id,backup_at,restore_test_at,restore_minutes,result,evidence_ref\r\nCRM,2026-10-01T12:00:00Z,2026-10-01T12:00:00Z,90,passed,restore-01\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {
+    "maxTestAgeDays": 30
+  },
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "restore-proof",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "systems": 2,
+      "findings": 3
+    },
+    "rows": [
+      {
+        "system_id": "CRM",
+        "backup_age_hours": 192,
+        "restore_age_days": 8,
+        "restore_minutes": 90,
+        "issues": "RPO_EXCEEDED;RTO_EXCEEDED",
+        "status": "review"
+      },
+      {
+        "system_id": "Files",
+        "backup_age_hours": null,
+        "restore_age_days": null,
+        "restore_minutes": null,
+        "issues": "MISSING_EVIDENCE",
+        "status": "review"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "RPO_EXCEEDED",
+        "id": "CRM",
+        "message": "Recovery evidence does not meet the supplied targets.",
+        "action": "Perform or review a restore test in an isolated environment."
+      },
+      {
+        "severity": "error",
+        "code": "RTO_EXCEEDED",
+        "id": "CRM",
+        "message": "Recovery evidence does not meet the supplied targets.",
+        "action": "Perform or review a restore test in an isolated environment."
+      },
+      {
+        "severity": "error",
+        "code": "MISSING_EVIDENCE",
+        "id": "Files",
+        "message": "Recovery evidence does not meet the supplied targets.",
+        "action": "Perform or review a restore test in an isolated environment."
+      }
+    ],
+    "limitations": [
+      "Evaluates submitted recovery records only. Does not back up, restore, verify backup contents or prove disaster readiness."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
