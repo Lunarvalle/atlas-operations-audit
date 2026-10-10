@@ -1,0 +1,91 @@
+{
+  "a": "sku,on_hand,reserved,on_order,units_sold,window_days,lead_days,safety_days,pack_size,moq,unit_cost,currency\r\nA-100,12,2,0,60,30,10,5,6,12,8.50,EUR\r\nB-200,50,0,12,20,30,7,5,4,8,4.00,EUR\r\nC-300,7,0,0,0,30,14,7,1,0,12.00,EUR\r\n",
+  "options": {
+    "budget": "200",
+    "budgetCurrency": "EUR"
+  },
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "stock-window",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "budget_remaining": {
+        "currency": "EUR",
+        "amount": 200
+      },
+      "skus": 3,
+      "reorder_skus": 1,
+      "proposed_spend": {
+        "EUR": 204
+      },
+      "findings": 2
+    },
+    "rows": [
+      {
+        "sku": "A-100",
+        "currency": "EUR",
+        "daily_average": 2,
+        "available": 10,
+        "inventory_position": 10,
+        "days_cover": 5,
+        "days_until_reorder": -5,
+        "suggested_units": 24,
+        "order_cost": 204,
+        "priority": "urgent",
+        "budget_status": "outside_budget"
+      },
+      {
+        "sku": "B-200",
+        "currency": "EUR",
+        "daily_average": 0.6667,
+        "available": 50,
+        "inventory_position": 62,
+        "days_cover": 75,
+        "days_until_reorder": 68,
+        "suggested_units": 0,
+        "order_cost": 0,
+        "priority": "review",
+        "budget_status": "fits_priority_budget"
+      },
+      {
+        "sku": "C-300",
+        "currency": "EUR",
+        "daily_average": 0,
+        "available": 7,
+        "inventory_position": 7,
+        "days_cover": null,
+        "days_until_reorder": null,
+        "suggested_units": 0,
+        "order_cost": 0,
+        "priority": "review",
+        "budget_status": "fits_priority_budget"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "ETA_UNVERIFIED",
+        "id": "B-200",
+        "message": "Incoming units affect the calculation; no arrival date was supplied.",
+        "action": "Confirm arrival inside supplier lead time."
+      },
+      {
+        "severity": "warning",
+        "code": "NO_OBSERVED_DEMAND",
+        "id": "C-300",
+        "message": "Stock exists but no sales were supplied for this window.",
+        "action": "Check seasonality and incomplete sales history before discounting."
+      }
+    ],
+    "limitations": [
+      "Scenario based on supplied historical average, not a forecast guarantee.",
+      "On-order stock is assumed available within lead time; confirm arrival dates.",
+      "No purchase order is submitted. Budget allocation is a greedy priority suggestion, not an optimization proof."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
