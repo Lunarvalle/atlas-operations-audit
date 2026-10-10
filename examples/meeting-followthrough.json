@@ -1,0 +1,65 @@
+{
+  "a": "action_id,meeting_id,action,owner,due_at,status,completion_ref\r\nA1,M1,Review sample,Marco,2026-10-01T12:00:00Z,open,\r\nA2,M2,Review sample,Marco,2026-10-20T12:00:00Z,done,\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "meeting-followthrough",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "actions": 2,
+      "overdue": 1,
+      "findings": 3
+    },
+    "rows": [
+      {
+        "action_id": "A1",
+        "meeting_id": "M1",
+        "action": "Review sample",
+        "owner": "Marco",
+        "due_at": "2026-10-01T12:00:00Z",
+        "status": "open",
+        "issues": "OVERDUE"
+      },
+      {
+        "action_id": "A2",
+        "meeting_id": "M2",
+        "action": "Review sample",
+        "owner": "Marco",
+        "due_at": "2026-10-20T12:00:00Z",
+        "status": "done",
+        "issues": "COMPLETION_UNPROVEN;DUPLICATE_ACTION"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "OVERDUE",
+        "id": "A1",
+        "message": "Action requires follow-through.",
+        "action": "Review the action register and record completion evidence."
+      },
+      {
+        "severity": "warning",
+        "code": "COMPLETION_UNPROVEN",
+        "id": "A2",
+        "message": "Action requires follow-through.",
+        "action": "Review the action register and record completion evidence."
+      },
+      {
+        "severity": "warning",
+        "code": "DUPLICATE_ACTION",
+        "id": "A2",
+        "message": "Action requires follow-through.",
+        "action": "Review the action register and record completion evidence."
+      }
+    ],
+    "limitations": [
+      "Uses a structured action register; does not transcribe meetings, infer promises or send messages. Exact normalized text duplicate detection only."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
