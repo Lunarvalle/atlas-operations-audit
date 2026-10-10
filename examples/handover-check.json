@@ -1,0 +1,76 @@
+{
+  "a": "item_id,from_owner,to_owner,next_action,due_at,evidence_ref,accepted\r\nH1,Alice,Marco,Check input,2026-10-20T12:00:00Z,file-1,true\r\nH2,Alice,,,2026-10-01T12:00:00Z,,false\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "handover-check",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "items": 2,
+      "findings": 5
+    },
+    "rows": [
+      {
+        "item_id": "H1",
+        "to_owner": "Marco",
+        "next_action": "Check input",
+        "due_at": "2026-10-20T12:00:00Z",
+        "issues": "",
+        "status": "documented"
+      },
+      {
+        "item_id": "H2",
+        "to_owner": "",
+        "next_action": "",
+        "due_at": "2026-10-01T12:00:00Z",
+        "issues": "TO_OWNER_MISSING;NEXT_ACTION_MISSING;EVIDENCE_REF_MISSING;ACCEPTANCE_PENDING;OVERDUE",
+        "status": "review"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "TO_OWNER_MISSING",
+        "id": "H2",
+        "message": "Handover has an open loop.",
+        "action": "Confirm responsibility, evidence and next action with the receiving owner."
+      },
+      {
+        "severity": "warning",
+        "code": "NEXT_ACTION_MISSING",
+        "id": "H2",
+        "message": "Handover has an open loop.",
+        "action": "Confirm responsibility, evidence and next action with the receiving owner."
+      },
+      {
+        "severity": "warning",
+        "code": "EVIDENCE_REF_MISSING",
+        "id": "H2",
+        "message": "Handover has an open loop.",
+        "action": "Confirm responsibility, evidence and next action with the receiving owner."
+      },
+      {
+        "severity": "warning",
+        "code": "ACCEPTANCE_PENDING",
+        "id": "H2",
+        "message": "Handover has an open loop.",
+        "action": "Confirm responsibility, evidence and next action with the receiving owner."
+      },
+      {
+        "severity": "warning",
+        "code": "OVERDUE",
+        "id": "H2",
+        "message": "Handover has an open loop.",
+        "action": "Confirm responsibility, evidence and next action with the receiving owner."
+      }
+    ],
+    "limitations": [
+      "Checks supplied handover records; does not confirm recipient consent, read evidence or transfer responsibility automatically."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
