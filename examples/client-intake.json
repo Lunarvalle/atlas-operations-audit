@@ -1,0 +1,61 @@
+{
+  "a": "field_id,required,depends_on\r\nscope,true,\r\naccess,true,scope\r\ndelivery,true,access\r\n",
+  "b": "field_id,value,owner\r\nscope,Documented goal,Client\r\naccess,,\r\ndelivery,Friday,Operator\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "client-intake",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "fields": 3,
+      "findings": 2
+    },
+    "rows": [
+      {
+        "field_id": "scope",
+        "status": "documented",
+        "owner": "Client",
+        "value_present": true,
+        "depends_on": ""
+      },
+      {
+        "field_id": "access",
+        "status": "answer_missing",
+        "owner": "",
+        "value_present": false,
+        "depends_on": "scope"
+      },
+      {
+        "field_id": "delivery",
+        "status": "dependency_missing",
+        "owner": "Operator",
+        "value_present": true,
+        "depends_on": "access"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "ANSWER_MISSING",
+        "id": "access",
+        "message": "Intake item is incomplete.",
+        "action": "Obtain the answer or resolve the prerequisite with its owner."
+      },
+      {
+        "severity": "error",
+        "code": "DEPENDENCY_MISSING",
+        "id": "delivery",
+        "message": "Intake item is incomplete.",
+        "action": "Obtain the answer or resolve the prerequisite with its owner."
+      }
+    ],
+    "limitations": [
+      "Checks presence, ownership and dependency order. Answer values are omitted from reports and are not validated for factual correctness. No customer contact or account creation."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
