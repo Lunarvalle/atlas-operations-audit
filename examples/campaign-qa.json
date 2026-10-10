@@ -1,0 +1,99 @@
+{
+  "a": "link_id,url\r\nAD1,https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn\r\nAD2,https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn\r\nAD3,https://example.com/c?utm_source=partner&token=secret-demo\r\n",
+  "options": {
+    "allowedSources": "newsletter,partner"
+  },
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "campaign-qa",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "links": 3,
+      "links_to_review": 3,
+      "findings": 6
+    },
+    "rows": [
+      {
+        "link_id": "AD1",
+        "url": "https://example.com/a?utm_source=Newsletter&utm_medium=email&utm_campaign=autumn",
+        "utm_source": "Newsletter",
+        "utm_medium": "email",
+        "utm_campaign": "autumn",
+        "issues": "SOURCE_OUTSIDE_DICTIONARY;CASE_SPLIT_utm_source",
+        "status": "review"
+      },
+      {
+        "link_id": "AD2",
+        "url": "https://example.com/b?utm_source=newsletter&utm_medium=email&utm_campaign=autumn",
+        "utm_source": "newsletter",
+        "utm_medium": "email",
+        "utm_campaign": "autumn",
+        "issues": ";CASE_SPLIT_utm_source",
+        "status": "review"
+      },
+      {
+        "link_id": "AD3",
+        "url": "https://example.com/c?utm_source=partner&token=%5BREDACTED%5D",
+        "utm_source": "partner",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "issues": "SENSITIVE_PARAMETER;MISSING_utm_medium;MISSING_utm_campaign",
+        "status": "review"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "SOURCE_OUTSIDE_DICTIONARY",
+        "id": "AD1",
+        "message": "Campaign tagging requires review.",
+        "action": "Review before spending; do not change attribution rules silently."
+      },
+      {
+        "severity": "error",
+        "code": "SENSITIVE_PARAMETER",
+        "id": "AD3",
+        "message": "Campaign tagging requires review.",
+        "action": "Review before spending; do not change attribution rules silently."
+      },
+      {
+        "severity": "error",
+        "code": "MISSING_utm_medium",
+        "id": "AD3",
+        "message": "Campaign tagging requires review.",
+        "action": "Review before spending; do not change attribution rules silently."
+      },
+      {
+        "severity": "error",
+        "code": "MISSING_utm_campaign",
+        "id": "AD3",
+        "message": "Campaign tagging requires review.",
+        "action": "Review before spending; do not change attribution rules silently."
+      },
+      {
+        "severity": "warning",
+        "code": "CASE_SPLIT",
+        "id": "AD1",
+        "message": "Different capitalization may split campaign reporting.",
+        "action": "Choose one agreed naming value; review historical reporting."
+      },
+      {
+        "severity": "warning",
+        "code": "CASE_SPLIT",
+        "id": "AD2",
+        "message": "Different capitalization may split campaign reporting.",
+        "action": "Choose one agreed naming value; review historical reporting."
+      }
+    ],
+    "limitations": [
+      "Does not measure clicks, conversion or attribution accuracy in GA4.",
+      "Case differences are flagged, not automatically rewritten.",
+      "Known sensitive query fields are redacted; this is not an exhaustive PII detector."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
