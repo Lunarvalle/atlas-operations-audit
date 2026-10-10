@@ -1,0 +1,54 @@
+{
+  "a": "scenario_id,units,unit_price,unit_cost,fee_percent,fixed_cost,currency\r\nBaseline,100,20,8,3,300,EUR\r\nStress,30,10,12,3,300,EUR\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "margin-scenario",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "scenarios": 2,
+      "findings": 1
+    },
+    "rows": [
+      {
+        "scenario_id": "Baseline",
+        "currency": "EUR",
+        "units": 100,
+        "revenue": 2000,
+        "fees": 60,
+        "variable_cost": 800,
+        "fixed_cost": 300,
+        "scenario_result": 840,
+        "break_even_units": 27
+      },
+      {
+        "scenario_id": "Stress",
+        "currency": "EUR",
+        "units": 30,
+        "revenue": 300,
+        "fees": 9,
+        "variable_cost": 360,
+        "fixed_cost": 300,
+        "scenario_result": -369,
+        "break_even_units": null
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "NO_POSITIVE_CONTRIBUTION",
+        "id": "Stress",
+        "message": "Unit contribution is not positive.",
+        "action": "Review price and costs."
+      }
+    ],
+    "limitations": [
+      "Arithmetic scenarios, not a forecast or accounting/tax advice. All demand, prices and costs are supplied assumptions. Fee rounding is on aggregate revenue; providers may round per transaction."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
