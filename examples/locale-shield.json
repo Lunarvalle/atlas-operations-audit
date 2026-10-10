@@ -1,0 +1,109 @@
+{
+  "a": "{\"checkout\": {\"total\": \"Total: {{amount}}\", \"pay\": \"Pay now\", \"help\": \"Read <b>carefully</b>\"}, \"welcome\": \"Welcome, {name}\"}",
+  "b": "{\"checkout\": {\"total\": \"Totale: {{importo}}\", \"pay\": \"Pay now\", \"help\": \"Leggi attentamente\"}, \"unused\": \"Vecchio testo\"}",
+  "asOf": "2026-10-09T12:00:00Z",
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "locale-shield",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "source_strings": 4,
+      "target_strings": 4,
+      "missing": 1,
+      "findings": 5
+    },
+    "rows": [
+      {
+        "key": "checkout.total",
+        "status": "review",
+        "issues": "PLACEHOLDER_MISMATCH",
+        "source": "Total: {{amount}}",
+        "target": "Totale: {{importo}}",
+        "source_length": 17,
+        "target_length": 19
+      },
+      {
+        "key": "checkout.pay",
+        "status": "review",
+        "issues": "UNCHANGED_REVIEW",
+        "source": "Pay now",
+        "target": "Pay now",
+        "source_length": 7,
+        "target_length": 7
+      },
+      {
+        "key": "checkout.help",
+        "status": "review",
+        "issues": "TAG_MISMATCH",
+        "source": "Read <b>carefully</b>",
+        "target": "Leggi attentamente",
+        "source_length": 21,
+        "target_length": 18
+      },
+      {
+        "key": "welcome",
+        "status": "review",
+        "issues": "MISSING_KEY",
+        "source": "Welcome, {name}",
+        "target": null,
+        "source_length": 15,
+        "target_length": null
+      },
+      {
+        "key": "unused",
+        "status": "review",
+        "issues": "EXTRA_KEY",
+        "source": null,
+        "target": "Vecchio testo",
+        "source_length": null,
+        "target_length": 13
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "PLACEHOLDER_MISMATCH",
+        "id": "checkout.total",
+        "message": "Translation release check needs attention.",
+        "action": "Review the source and target string in context."
+      },
+      {
+        "severity": "warning",
+        "code": "UNCHANGED_REVIEW",
+        "id": "checkout.pay",
+        "message": "Translation release check needs attention.",
+        "action": "Review the source and target string in context."
+      },
+      {
+        "severity": "error",
+        "code": "TAG_MISMATCH",
+        "id": "checkout.help",
+        "message": "Translation release check needs attention.",
+        "action": "Review the source and target string in context."
+      },
+      {
+        "severity": "error",
+        "code": "MISSING_KEY",
+        "id": "welcome",
+        "message": "Translation release check needs attention.",
+        "action": "Review the source and target string in context."
+      },
+      {
+        "severity": "warning",
+        "code": "EXTRA_KEY",
+        "id": "unused",
+        "message": "Target key is not present in the source.",
+        "action": "Check obsolete strings or source coverage."
+      }
+    ],
+    "limitations": [
+      "Structural QA, not translation quality, legal meaning, runtime rendering or semantic accuracy.",
+      "Supports simple i18next, ${name}, {name} and printf placeholders; full ICU plural/select syntax is flagged for separate review.",
+      "Identical text and expansion are review signals, not proven errors."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
