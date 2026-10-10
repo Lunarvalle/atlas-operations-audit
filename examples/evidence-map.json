@@ -1,0 +1,42 @@
+{
+  "a": "claim_id,claim,required_evidence,max_age_days\r\nC1,Claim to review,2,30\r\n",
+  "b": "evidence_id,claim_id,source_url,observed_at,outcome\r\nE1,C1,https://example.org/study,2026-10-01T12:00:00Z,supports\r\nE2,C1,https://example.org/study#copy,2026-10-01T12:00:00Z,supports\r\nE3,C1,https://example.org/counter,2026-10-01T12:00:00Z,contradicts\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "evidence-map",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "claims": 1,
+      "findings": 1
+    },
+    "rows": [
+      {
+        "claim_id": "C1",
+        "claim": "Claim to review",
+        "status": "contradicted",
+        "distinct_supporting_urls": 1,
+        "required": 2,
+        "contradicting": 1,
+        "stale": 0
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "CONTRADICTED",
+        "id": "C1",
+        "message": "Claim evidence needs review.",
+        "action": "Inspect original sources and resolve contradictions."
+      }
+    ],
+    "limitations": [
+      "Checks supplied evidence labels, freshness and distinct URL counts. Does not read sources, establish independence, judge truth or certify a claim."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
