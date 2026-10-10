@@ -1,15 +1,18 @@
-# MCP integration contract
+# Delivery and integration
 
-Transport: newline-delimited JSON-RPC over stdio. Protocol versions: 2025-11-25, 2025-06-18, 2025-03-26 and 2024-11-05. Initialize before requesting tools.
+Each product has one stable product ID and includes EN, IT, FR, zh-CN and ES interface versions. Language selection does not change product entitlement.
 
-`atlas_catalog` returns exact required columns, options, limitations and synthetic examples. Ten analysis tools use snake_case product IDs, e.g. `payout_bridge`.
+## Local package
+Extract the individual ZIP, open APRI.html in a browser supporting JavaScript and local file selection, choose a language and inspect the sample. Download the input template, replace sample rows, map columns and set the snapshot timestamp. Review findings before using the exported HTML, JSON or CSV report. No source-system changes occur automatically. Technical keys and detailed diagnostics remain English.
 
-Arguments: `a` (CSV text or source JSON text), `b` where required, product-specific `options`, explicit ISO `asOf`, optional `reportLimit` (1–5000, default 100), `includeCsv` (default false). Queue Focus requires `asOf`. Never supply a URL expecting it to be fetched. It will only be treated as input text.
+Local table JSON must be a nonempty array of scalar-valued objects with identical columns. Limits are 5,000 rows and 2 MB per input file; Locale Shield uses its two nested JSON documents instead. Invoice quantities above four decimal places are rejected. Do not silently merge currencies, units or identities.
 
-Output: `structuredContent` plus equivalent JSON text; full report counts, bounded preview, action groups and input/result SHA-256. Optional CSV contains complete rows/findings and protects spreadsheet formula prefixes. A preview can be truncated; the metadata says so. A missing input is an error, not an empty success.
+The CLI reads an input object from standard input. Table values may be parsed arrays or CSV strings. The MCP server exposes the one purchased tool, not all 29. A compatible Node.js runtime is required only for CLI/MCP; the browser interface is self-contained. Integration credentials are neither required nor included.
 
-Retries: audits have no external effects. Fix `asOf` for a reproducible result. A changed input or version may change the fingerprint. This is not a signed payment receipt.
+## Cloud report
+A run selects one product. The current cloud schema accepts CSV strings for table products and JSON document strings for Locale Shield. Its input cap is 2 MB combined, not per file. Select the matching options and clear unrelated defaults. A completed delivery contains OUTPUT (JSON), REPORT (HTML) and REVIEW (CSV). Cloud storage follows the run account's access and retention settings.
 
-The process reads only its bundled code and catalog. It does not persist customer input/report files, make network requests or execute instructions contained in data. Hosting platforms may retain transport logs. Before a hosted commercial release, test anonymous rejection, paid entitlements, quotas, all ten sample calls and real delivery independently.
+A report event is not a local software licence. Owner qualification is not a customer sale or bank payout. The corrected cloud deployment and public availability require separate verification. Do not submit confidential exports to GitHub.
 
-The commercial package supplies the server implementation. This public repository deliberately contains contracts and synthetic fixtures only; no working public endpoint is promised yet.
+## Evidence
+Examples contain synthetic fixed reference dates, inputs and expected outputs. Replace reference dates for real snapshots. Local regression and browser testing do not establish compatibility with all devices, native-speaker review or commercial benefit.
