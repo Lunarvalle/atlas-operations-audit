@@ -1,0 +1,57 @@
+{
+  "a": "service_id,period_start,period_end,total_events,bad_events,target_percent,owner\r\nAPI,2026-10-01T12:00:00Z,2026-10-09T12:00:00Z,1000,20,99,Ops\r\nNew,2026-10-01T12:00:00Z,2026-10-09T12:00:00Z,0,0,99,Ops\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "service-review",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "blocked",
+    "metrics": {
+      "services": 2,
+      "findings": 2
+    },
+    "rows": [
+      {
+        "service_id": "API",
+        "owner": "Ops",
+        "observed_events": 1000,
+        "bad_events": 20,
+        "achieved_percent": 98,
+        "error_budget_remaining": -10,
+        "status": "target_missed"
+      },
+      {
+        "service_id": "New",
+        "owner": "Ops",
+        "observed_events": 0,
+        "bad_events": 0,
+        "achieved_percent": null,
+        "error_budget_remaining": 0,
+        "status": "no_observations"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "error",
+        "code": "TARGET_MISSED",
+        "id": "API",
+        "message": "Service target requires review.",
+        "action": "Review complete event coverage and the reporting window."
+      },
+      {
+        "severity": "warning",
+        "code": "NO_OBSERVATIONS",
+        "id": "New",
+        "message": "Service target requires review.",
+        "action": "Review complete event coverage and the reporting window."
+      }
+    ],
+    "limitations": [
+      "Event-count SLO arithmetic only, not time-weighted availability or contractual SLA adjudication. Sampling bias and missing events cannot be detected from aggregate counts."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
