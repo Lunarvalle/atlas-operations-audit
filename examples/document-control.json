@@ -1,0 +1,62 @@
+{
+  "a": "document_id,current_version,owner,review_due\r\nD1,2,Ops,2026-10-20T12:00:00Z\r\nD2,1,,2026-10-01T12:00:00Z\r\n",
+  "b": "ack_id,document_id,reader,version_read,read_at\r\nACK1,D1,Marco,1,2026-10-01T12:00:00Z\r\n",
+  "asOf": "2026-10-09T12:00:00Z",
+  "options": {},
+  "_example_notice": "Synthetic example, not customer data or verified business benefit.",
+  "_expected_result": {
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "product": "document-control",
+    "observedAt": "2026-10-09T12:00:00Z",
+    "status": "review",
+    "metrics": {
+      "documents": 2,
+      "findings": 4
+    },
+    "rows": [
+      {
+        "ack_id": "ACK1",
+        "document_id": "D1",
+        "reader": "Marco",
+        "version_read": "1",
+        "current_version": "2",
+        "status": "old_version"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "REVIEW_OVERDUE",
+        "id": "D2",
+        "message": "Document review is due.",
+        "action": "Review currency and ownership."
+      },
+      {
+        "severity": "warning",
+        "code": "OWNER_MISSING",
+        "id": "D2",
+        "message": "No document owner.",
+        "action": "Assign an owner."
+      },
+      {
+        "severity": "warning",
+        "code": "NO_ACKNOWLEDGEMENTS",
+        "id": "D2",
+        "message": "No supplied acknowledgement.",
+        "action": "Check the intended reader roster."
+      },
+      {
+        "severity": "warning",
+        "code": "OLD_VERSION",
+        "id": "ACK1",
+        "message": "Acknowledgement does not match current document metadata.",
+        "action": "Obtain the correct version and acknowledgement."
+      }
+    ],
+    "limitations": [
+      "Version/acknowledgement metadata checks only. Does not read documents or establish comprehension, signature validity or full reader-roster coverage."
+    ],
+    "classification": "analysis_of_supplied_data_not_verified_business_outcome"
+  }
+}
